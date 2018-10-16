@@ -1,10 +1,15 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import RuleList from './components/RuleList';
-import rules from './data.json';
+import "bootstrap/dist/css/bootstrap.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import RuleList from "./containers/RuleListContainer";
+import store from "./store/app-store";
 
-const domElement = document.getElementById('root');
-const reactElement = <RuleList rules={rules} />;
+const domElement = document.getElementById("root");
+const reactElement = (
+  <Provider store={store}>
+    <RuleList />
+  </Provider>
+);
 
 ReactDOM.render(reactElement, domElement);
