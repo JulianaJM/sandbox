@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	    <meta charset="utf-8"/>
+<title>Implementation svg</title>
+</head>
+<body>
+<h1>Implementation via aria</h1>
+<svg height="100px" width="100px" role="img" aria-label="titre + description">
+ <title>titre</title>
+  <desc>description</desc>
+ <rect fill="green" height="100px" width="100px"/>
+  <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+</svg>
+<h1>Implementation <span lang="en">fallback</span></h1>
+<svg height="100px" width="100px">
+ <rect fill="green" height="100px" width="100px" />
+</svg>
+<p><a href="description.htm">description</a></p>
+<h1>Implementation via <span lang="en">object</span></h1>
+<object>
+<svg height="100px" width="100px" role="img" role="img" aria-label="title + description]">
+ <title>[Titre]</title>
+  <desc>[long description]</desc>
+ <rect fill="green" height="100px" width="100px"/>
+</svg>
+</object>
+</body>
+</body>
+</html>

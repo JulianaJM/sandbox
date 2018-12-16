@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+	<head>
+		<title>Machine de Turing - Exercice corrigé</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/styles-corrige.css" media="all" />
+		<link rel="stylesheet" href="css/access-config.css" media="all" />
+	</head>
+
+	<body>	
+		<div id="wrapper">
+			<button type="button" id="modal-button-c">Accessibilité</button>
+			<!-- Le lien d'accès rapide est implémenté en haut de page, il pointe vers la zone de contenu principal, généralement le main. 
+			Le lien d'accès rapide est masqué par défaut, il apparait à la prise de focus via CSS (ligne 51 du fichier CSS).
+			-->
+			<a id="skiplink" href="#main">Contenu</a>	
+			<div id="header" class="clear">
+				<div class="inside">
+					<div class="chapo">
+						<!-- le header est affecté du role banner, pour faciliter l'utilisation des raccoucis clavier permettant la navigation via les landmarks, le header ne contient ni la recherche ni la navigation.
+						-->
+						<header role="banner">
+							<h1>Machine de Turing</h1>
+							<p class="intro">À l'origine, le concept de machine de Turing, inventé avant l'ordinateur, était censé représenter une personne virtuelle ...</p>
+						</header>
+						<!-- la zone de recherche dans le site est affectée du role search. Ce n'est pas une bonne idée de mettre le rôle search directement sur le formulaire lui-même, la balise form étant mappée avec le role form dans ARIA.
+						-->
+						<div role="search" class="clear">
+							<form method="POST" id="search">
+								<input type="text" id="search-input" title="Rechercher sur le site" placeholder="Recherche" />
+								<input type="image" src="img/loupe.png" title="Lancer la recherche" alt="Lancer la recherche" />
+							</form>					
+						</div>
+					</div>
+					<!-- la zone de navigation principale, en pratique le menu de navigation principal, est affectée du role navigation. Lorsque plusieurs role navigation sont utilisés dans la page, il est préférable de distinguer le menu principal via une propriété aria-label.
+					-->
+					<nav id="navigation" role="navigation" aria-label="Menu de navigation">
+						<ul>
+							<li><a href="#">Définition</a></li>
+							<li><a href="#">Introduction</a></li>
+							<li><a href="#">Exemple</a></li>
+						</ul>
+					</nav>
+					<!-- end #navigation" -->
+
+				</div>
+			</div>
+			<!-- end #header -->
+			<!-- la zone de contenu principale est structurée via un élément main, affectée du rôle main. C'est cet élément qui est la cible du lien d'évitement. Un tabindex=-1 permet de synchroniser la reprise du focus avec la tabulation pour certains navigateur.
+			L'élément main n'étant pas sectionnant, on va donc englober son contenu dans un élément section afin de produire un plan du document cohérent. Cette section prends comme nom le premier titre h(x) de ses enfants, ici il n'y en a pas, pour améliorer la restitution une propriété aria-label permet de lui donner un nom plus pertinent.
+			Chaque sous-partie indépendante est structurée via un élément article pour construire le plan du document suivant :
+			-section machine de turing
+			 -article commandez une machine
+			 -article définition
+			 -article introduction
+			 -article exemple
+			-->
+			
+			<main id="main" role="main" tabindex="-1">
+				<section aria-label="machine de turing">			
+					<article id="command">
+						<!-- Le bouton qui commande la zone affichée ou masquée du formulaire est affectée des propriétés aria-expander=true|false pour indiquer que la zone est fermée ou ouverte et de la propriété aria-controls=@id pour indiquer l'élément contrôlé par le bouton.
+						-->
+						<h2 id="myToggle">
+							<button id="myToggleButton" aria-expanded="false" aria-controls="myContentToToggle">Commandez une machine !</button>
+						</h2>
+						<!-- la zone contrôlée est affectée de la propriété aria-hidden=true|false qui permet d'inhiber sa restitution dans les lecteurs d'écrans. Cette propriété est synchronisée avec l'état visible de la zone géré par CSS.
+						-->
+						<div id="myContentToToggle" aria-hidden="true">
+							<form id="myForm" method="POST" class="inside">
+								<p class="oblig">Les champs précédés d'une étoile sont obligatoires</p>
+								<!-- le 'label' est un paragraphe identifié. Il va être lié au champ par la propriété aria-labelledby du champ. Ce mécanisme est identique à celui d'un label classique, à la différence que le label ainsi créé n'est pas cliquable.
+								Le champs est obligatoire, ce qu'indique le symbole *, en complément une propriété aria-required=true est utilisée pour mettre cette information à disposition des APIs d'accessibilité.
+								-->
+								<p class="label" id="label-nom">Votre nom (*) :</p>
+								<input aria-required="true" type="text" id="nom" name="nom" aria-labelledby="label-nom" />
+								<!-- le champ prénom utilise un label HTML qui reste la solution la plus robuste -->
+								<label for="prenom">Votre prénom :</label>
+								<input type="text" id="prenom" name="prenom" />
+								<!-- le champ email, obligatoire, contient l'indication du format de saisie attendu.-->
+								<p class="label" id="label-email">Votre email (nom@site.com) (*):</p>
+								<input aria-required="true" type="text" name="email" aria-labelledby="label-email"/>
+
+								<label for="message">Votre message (*) : </label>
+								<textarea aria-required="true" name="message" id="message"></textarea>
+								<!-- les cases à cocher des choix de couleur sont regroupées, via un élément fieldset associé à un élement legend. La légende sera ainsi vocalisée à chaque prise de focus sur une des cases à cocher.
+								-->
+								<fieldset>
+									<Legend class="title-gp">Choisissez la couleur que vous souhaitez : </legend>
+									<input autocomplete="off" type="checkbox" name="color" value="Bleue" id="blue" /> <label for="blue">Bleue</label>
+									<input autocomplete="off" type="checkbox" name="color" value="Rouge" id="red"/><label for="red">Rouge</label>
+									<input autocomplete="off" type="checkbox" name="color" value="Verte" id="green"/><label for="green">Verte</label>
+									<!-- le choix de la couleur orange est dépendant d'informations complémentaires, ces indications complémentaires sont liées au champ concerné par une propriété aria-describedby sur le champ concerné. Cela provoquera la vocalisation du message lors de la prise de focus sur la case à cocher.
+									-->
+									<input autocomplete="off" type="checkbox" name="color" value="Orange" id="orange" aria-describedby="desc"/><label for="orange">Orange</label>
+								<p id="desc">Délai de 15 jours ouvrés pour la couleur orange</p>
+								</fieldset>
+								<fieldset>
+									<legend class="title-gp">Je souhaite recevoir la newsletter</legend>
+									<input type="radio" name="newsletter" value="oui" id="oui"/> <label for="oui">Oui</label>
+									<input type="radio" name="newsletter" value="non" id="non"/> <label for="non">Non</label>
+								</fieldset>
+
+								<div>
+									<p><label for="upload">Envoyez un graphisme à imprimer sur la machine</label>
+									<input type="file" id="upload"/></p>
+									<div id="upload-container">
+									</div>
+								</div>
+
+								<input type="submit" id="mySubmit" value="Commander ma machine de Turing !" />
+		
+							</form>
+						</div>
+						<div id="msg-ok"></div>
+					</article>
+
+					<article id="block-1" class="clear">
+						<div class="inside">
+							<div class="left-title resume">
+								<h2 class="title">Définition</h2>
+									<p>Quoique son nom de « machine » puisse conduire à croire le contraire, une machine de Turing est un concept abstrait, c'est-à-dire un objet mathématique.</p>
+							</div>
+							<div class="right-content">
+								<p>Une machine de Turing comporte les éléments suivants :</p>
+								<ol>
+									<li>un ruban divisé en cases consécutives. Chaque case contient un symbole parmi un alphabet fini. L'alphabet contient un symbole spécial « blanc » ('0'), et un ou plusieurs autres symboles. Le ruban est supposé être de longueur infinie vers la gauche ou vers la droite, en d'autres termes la machine doit toujours avoir assez de longueur de ruban pour son exécution ;</li>
+									<li>une tête de lecture/écriture qui peut lire et écrire les symboles sur le ruban, et se déplacer vers la gauche ou vers la droite du ruban ;</li>
+									<li>un registre d'état qui mémorise l'état courant de la machine de Turing. Le nombre d'états possibles est toujours fini, et il existe un état spécial appelé « état de départ » qui est l'état initial de la machine avant son exécution ;</li>
+									<li>une table d'actions qui indique à la machine quel symbole écrire, comment déplacer la tête de lecture, et quel est le nouvel état, en fonction du symbole lu sur le ruban et de l'état courant de la machine. Si aucune action n'existe pour une combinaison donnée d'un symbole lu et d'un état courant, la machine s'arrête.</li>
+								</ol>
+								<p><a href="http://morphett.info/turing/turing.html#LoadMenu">Simuler en ligne !</a></p>
+							</div>
+						</div>
+					</article>
+
+					<article id="block-2" class="clear">
+						<div class="inside">
+							<div class="right-title resume">
+								<h2 class="title">Introduction</h2>
+								<p>Une machine de Turing est un modèle abstrait du fonctionnement des appareils mécaniques de calcul, tel un ordinateur et sa mémoire. Ce modèle a été imaginé par Alan Turing en 1936, en vue de donner une définition précise au concept d’algorithme ou de « procédure mécanique ».</p>
+								<button id="modal-def">Qui est Alan Turing ?</button>
+							</div>
+							<div class="left-content">
+								<p>La thèse de Church postule que tout problème de calcul fondé sur une procédure algorithmique peut être résolu par une machine de Turing. Cette thèse n'est pas un énoncé mathématique, puisqu'elle ne suppose pas une définition précise des procédures algorithmiques. En revanche, il est possible de définir une notion de « système acceptable de programmation » et de démontrer que le pouvoir de tels systèmes est équivalent à celui des machines de Turing (Turing-complet).</p>
+								<p>À l'origine, le concept de machine de Turing, inventé avant l'ordinateur, était censé représenter une personne virtuelle exécutant une procédure bien définie, en changeant le contenu des cases d'un tableau infini, en choisissant ce contenu parmi un ensemble fini de symboles. D'autre part, la personne doit mémoriser un état particulier parmi un ensemble fini d'états. La procédure est formulée en termes d'étapes très simples, du type : « si vous êtes dans l'état 42 et que le symbole contenu sur la case que vous regardez est '0', alors remplacer ce symbole par un '1', passer dans l'état 17, et regarder une case adjacente (droite ou gauche) ».</p>
+							</div>
+						</div>
+					</article>
+
+					<article id="block-3" class="clear">
+						<div class="inside">
+							<div class="left-title resume">
+								<h2 class="title">Exemple</h2>
+								<p>La machine de Turing qui suit possède un alphabet {‘0’, ‘1’}, ‘0’ étant le « blanc ». On suppose que le ruban contient une série de ‘1’, et que la tête de lecture/écriture se trouve initialement au-dessus du ‘1’ le plus à gauche. Cette machine a pour effet de doubler le nombre de ‘1’, en intercalant un ‘0’ entre les deux séries. Par exemple, « 111 » devient « 1110111 ».</p>
+							</div>
+							<div class="right-content">
+								<p>L’ensemble d’états possibles de la machine est {e1, e2, e3, e4, e5} et l’état initial est e1.
+							La table d’actions est la suivante :</p>
+							<!-- le tableau est un tableau complexe, il comporte donc un résumé pour donner des indications sur la structure et les données aux utilisateurs de lecteurs d'écran.
+							Les entêtes de lignes et de colonnes sont remplacées par des balise th, et possèdent, respectivement l'attribut scope="col" et scope="row"-->
+								<table>
+									<caption>
+										Exemple de table de transition
+									</caption>
+									<tr>
+										<th scope="col">Ancien état</th>
+										<th scope="col">Symbole lu</th>
+										<th scope="col">Symbole écrit</th>
+										<th scope="col">Mouvement</th>
+										<th scope="col">Nouvel état</th>
+									</tr>
+									<tr>
+										<th scope="row">e1</th>
+										<td>0</td>
+										<td></td>
+										<td>(Arrêt)</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">e1</th>
+										<td>1</td>
+										<td>0</td>
+										<td>Droite</td>
+										<td>e2</td>
+									</tr>
+									<tr>
+										<th scope="row">e2</th>
+										<td>1</td>
+										<td>1</td>
+										<td>Droite</td>
+										<td>e2</td>
+									</tr>
+									<tr>
+										<th scope="row">e2</th>
+										<td>0</td>
+										<td>0</td>
+										<td>Droite</td>
+										<td>e3</td>
+									</tr>
+								</table>
+							</div>
+						</div>	
+					</article>
+				</section>
+			</main>
+		<!-- end #main -->
+						
+			<div id="footer" class="clear">
+				<div class="inside">
+					<!-- la zone des liens complémentaires est structurée via un aside -->
+					<aside role="complementary" class="links clear">
+						<h2>Liens annexes</h2>
+						<ul>
+							<li><a target="_blank" href="https://fr.wikipedia.org/wiki/Test_de_Turing">Test de Turing</a></li>
+							<li><a target="_blank" href="https://fr.wikipedia.org/wiki/Turing-complet">Turing-complet</a></li>
+							<li><a target="_blank" href="https://fr.wikipedia.org/wiki/Prix_Turing">Prix Turing</a></li>
+							<li><a target="_blank" href="https://fr.wikipedia.org/wiki/Oracle_(machine_de_Turing)">Oracle (machine de Turing)</a></li>
+							<li><a target="_blank" href="https://fr.wikipedia.org/wiki/Turing_Number">Turing Number</a></li>
+						</ul>
+					</aside>
+					<!-- la zone de pied de page est structurée via un élément footer, le role contentinfo permet de signaler qu'il s'agit du pied de page du document. -->
+					<footer role="contentinfo">
+						<p class="credits"><a href="https://fr.wikipedia.org/wiki/Machine_de_Turing">Article extrait et adapté de Wikipédia</a></p>
+					</footer>
+
+				</div>
+			</div>
+			<!-- end #footer -->
+
+		</div>
+		<!-- end #wrapper -->
+		<!-- La modale est implémentée après l'ensemble des contenus de la page, ce qui permet d'affecter un role hidden=true sur l'ensemble des contenus de la page lorsque la modale est affichée. Ce comportement simule, pour les lecteurs d'écran une vraie modale. -->
+		<div id="modal-def-content" aria-labelledby="modal-def-title" tabindex="-1" role="dialog">
+			<button class="close" id="btn-close-def" title="Fermer"><span aria-hidden="true">X</span></button>
+			<div tabindex="0" role="document">
+			<h1 id="modal-def-title">Alan Turing</h1>
+			<figure role="group" class="illustration">
+				<img src="img/turing.png" alt="photo" />
+				<figcaption class="legend">
+					Alan Turing à l'école de Sherborne dans le Dorset, âgé de 16 ans, en 1928. Photo: Sherborne école / AFP / Getty Images
+				</figcaption>
+			</figure>
+			<p>
+			Alan Mathison Turing (23 juin 1912 - 7 juin 1954), est un mathématicien, <a href="https://fr.wikipedia.org/wiki/Cryptologue">cryptologue</a> et informaticien britannique, auteur, en 1936, d'un article de logique mathématique devenu plus tard un des fondements scientifiques de l'informatique.
+			</p>
+			<p>
+			Pour résoudre le problème fondamental de la décidabilité en arithmétique, il y présente une <a href="https://fr.wikipedia.org/wiki/Exp%C3%A9rience_de_pens%C3%A9e">expérience de pensée</a> que l'on nommera ensuite machine de Turing et des concepts de programmation et de programme1,2, qui prendront tout leur sens avec la diffusion des ordinateurs, dans la seconde moitié du XXe siècle. 
+			</p>
+			<p>
+				Contenus extrait de Wikipédia : <a href="https://fr.wikipedia.org/wiki/Alan_Turing">Alan Turing</a>.
+			</p>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/AccessConfig.js"></script>
+	</body>
+
+</html>

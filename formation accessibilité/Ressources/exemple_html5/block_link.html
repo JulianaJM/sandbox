@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Exemple block link</title>
+	</head>
+<body>
+<h1>Exemple block link</h1>
+<a href="page.htm" style="display:block;width:450px;border:1px solid black;text-align:center">
+<h2>Voici un lien qui contient des éléments de type block</h2>
+<p>
+ <img src="image.jpg" alt="Un exemple d'image" /><br />
+ Ce type de lien, autorisé en HTML 5 peut causer des problèmes dans les lecteurs d'écran.
+</p>
+</a>
+<h1>Exemple de détournement Block Link</h1>
+<div onclick="ouvre()" style="width:450px;border: 1px solid black;text-align:center" tabindex="0">
+<h2>Patch possible à partir d'un div traité via JS (onclick) et tabindex="0"</h2>
+<p>
+ <img src="image.jpg" alt="Un exemple d'image" /><br />
+ Ce type de lien, autorisé en HTML 5 peut causer des problèmes dans les lecteurs d'écran.
+</p>
+<a href="page.htm">En savoir plus</a>
+</div>
+</body>
+</html>

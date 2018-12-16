@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Exemple de piège au clavier</title>
+	</head>
+	<body>
+		<h1>Exemple de piège au clavier</h1>
+		<p><a href="#">un lien parfait qui ne bloque pas</a></p>
+		<p>
+			<a onclick="if (!this.isContentEditable) return !window.open(this.href,'blank');" onkeypress="if (!this.isContentEditable) return !window.open(this.href,'blank');" href="https://www.access42.net"><strong>Je vais te bloquer&nbsp;! :smiley_diablotin:</strong></a>
+		</p>
+		<p><a href="#">un autre lien parfait qui ne bloque pas</a></p>
+	</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Alerte - ARIA au pays du Web</title>
+	<link rel="stylesheet" id="Cstyle" href="css/style.css" type="text/css" media="screen" title="style par defaut" />
+	<script type="text/javascript" src="js/aria-labelledby.js"></script>
+</head>
+
+<body>
+<div id="screen">
+	<p class="skiplink"><a href="#main">contenu</a></p>
+	<header role="banner" class="main-header">
+		<h1 id="banner">ARIA au pays du Web</h1>
+		<img src="img/access42.svg" alt="Access42" width="60" />
+	</header>
+	
+	<nav id="menu" role="navigation" class="clearfix">
+		<ul id="nav">
+		 <li><a href="index.html"><span class="coche"></span>Accueil</a></li>
+		 <li><a href="landmark.html"><span class="coche"></span>Landmark</a></li>
+		 <li><a href="alerte.html" class="active"  title="boîte de dialogue alerte - page active"><span class="coche"></span>Alerte</a></li>
+		 <li><a href="slider.html"  ><span class="coche"></span><span lang="en">Slider</span></a></li>
+		 <li><a href="progressbar.html"  ><span class="coche"></span>Barre de progression</a></li>
+		 <li><a href="formulaire.html"  title="un formulaire intelligent"><span class="coche"></span>Formulaire</a></li>
+		 <li><a href="live_region.html"  title="Live region&nbsp;: une région vivante polie"><span class="coche"></span><span lang="en">Live region</span></a></li>
+		 <li><a href="chat.html"  title="Un module de chat intelligent"><span class="coche"></span>Chat</a></li>
+		</ul>
+	</nav>
+
+<main id="main" role="main" class="main">
+<section>
+	<h2>Les boîtes de dialogue</h2>
+	<p>
+	 La valeur <code>alertdialog</code> de l'attribut <code>role</code> permet de déclarer qu'un contenu est une boîte de dialogue.
+	</p>
+	<p>
+	 Ces boîtes de dialogue peuvent être utilisées en alternative aux alertes JavaScript (<code>alert()</code>, <code>prompt()</code> ou <code>confirm()</code>).
+	</p>
+	<p>
+	 L'implémentation fait appel à d'autres attributs ARIA tels que <code>labelledby</code> pour permettre de vocaliser le contenu de la boîte de dialogue.
+	</p>
+	<p>
+	 La fenêtre présentée ici est traitée comme une fenêtre modale. La navigation clavier sur les éléments de la page est désactivée tant que la fenêtre de dialogue est affichée.
+	</p>
+	<h3>Démonstration</h3>
+	<h4>Une boîte de dialogue JavaScript (alert)</h4>
+	<button onclick="javascript:alert('Je suis une boîte de dialogue JavaScript.')">Afficher la boîte de dialogue JavaScript</button>
+	<h4>Une boîte de dialogue avec ARIA et <code>aria-labelledby</code></h4>
+	<button class="opendialog" id="opendialog" onclick="open_dial()">Afficher la boîte de dialogue ARIA</button>
+	<div class="alertdialogtest">
+	<div class="alertdialog" id="alertdialog" role="alertdialog" aria-labelledby="title1" aria-describedby="desc1" tabindex="-1" onkeydown="esclose(event);">
+	<div id="title1" class="dialog-title">boîte de dialogue</div>
+	<div id="desc1" class="dialog-desc"><p>Je suis une boîte de dialogue qui parle.</p><p>Je peux insérer tous les types de contenus.</p><p>Je peux être stylée.</p></div>
+	<span tabindex="0" id="notab" onfocus="buttontab()"></span>
+	<button class="closedialog" id="closedialog" onclick="close_dial('alertdialog')">Fermer</button>
+	<span tabindex="0" id="notab" onfocus="buttontab()"></span>
+	</div>
+	</div>
+<h4>Restitution vocale</h4>
+<p>Voici la restitution vocale telle qu'elle est obtenue par NVDA. Chaque ligne correspond à la vocalisation d'un élément.</p>
+<h5>Pour la boîte de dialogue JavaScript</h5>
+<div class="parole">
+<h6 class="titreW">Visionneuse de parole de NVDA</h6>
+<p>
+Afficher la boîte de dialogue JavaScript bouton
+</p>
+<p>
+Annonce de la page http://qelios.net&nbsp;: dialogue Je suis une boîte de dialogue JavaScript
+</p>
+<p>
+OK bouton
+</p>
+</p>
+</div>
+<h5>Pour la boîte de dialogue ARIA</h5>
+<div class="parole">
+<h6 class="titreW">Visionneuse de parole de NVDA</h6>
+<p>Afficher la boîte de dialogue ARIA bouton</p>
+<p>boîte de dialogue dialogue Je suis une boîte de dialogue qui parle Je peux insérer tous les types de contenus Je peux être stylée</p>
+<p>Fermer bouton</p>
+</div>
+<h4>Liste des rôles, états et propriétés utilisés</h4>
+<ul>
+<li><code>role="alertdialog"</code>&nbsp;: ce rôle signale que le composant est une boîte de dialogue (sur NVDA, c'est vocalisé par «&nbsp;dialogue&nbsp;»).</li>
+<li><code>labelledby="[ID]"</code>&nbsp;: cet attribut signale quel est le label (titre) à utiliser pour la vocalisation du composant.</li>
+<li><code>describedby="[ID]"</code>&nbsp;: cet attribut signale les contenus complémentaires à vocaliser pour le composant. Ici, c'est le contenu de la boîte elle-même qui est utilisé.</li>
+<li><code>aria-hidden="true/false"</code>&nbsp;: cette propriété donne le statut de la boîte de dialogue (affichée, oui/non)</li>
+</ul>
+<p>
+ ARIA propose également des rôles similaires comme <code>alert</code> et <code>dialog</code> pour des composants plus spécifiques.
+</p>
+<h4>Note sur les fenêtres modales ARIA</h4>
+<p>
+ Attention&nbsp;: ces types de fenêtre ne sont pas de «&nbsp;vraies&nbsp;» fenêtres modales. Autrement dit, l'utilisateur peut toujours tabuler sur les éléments de l'interface du navigateur ou cliquer sur les éléments de la page.
+</p>
+<p>
+ARIA définit un certain nombre de recommandations pour le contrôle au clavier des fenêtres «&nbsp;modales&nbsp;»&nbsp;:
+</p>
+<ul>
+ <li>la tabulation et le click doivent uniquement être actifs dans la fenêtre&nbsp;;</li>
+ <li>la touche <span class="touche">ESC</span> doit fermer la fenêtre.</li>
+</ul>
+<p>
+ L'implémentation ici utilise ces méthodes&nbsp;:
+</p>
+<ul>
+ <li>pour forcer le focus à rester sur le bouton de fermeture, ce dernier est entouré de deux <code>span</code> vides qui renvoient sur le bouton de fermeture&nbsp;;</li>
+ <li>le click est contrôlé par un <code>div</code> en second plan&nbsp;;</li>
+ <li>les évènements claviers sont interceptés et, dans le cas de la touche <span class="touche">ESC</span>, la fenêtre est fermée.</li>
+</ul>
+<p>
+ ARIA propose une méthode basée sur <code>onkeypress</code> qui n'a pas pu être testée&nbsp;: <a href="http://www.w3.org/TR/wai-aria-practices/#trap_focus_div" lang="en">3.3.1. Trapping Focus</a>.
+</p>
+<h4>Note sur la gestion de la tabulation clavier</h4>
+<p>
+La navigation clavier est gérée de la manière suivante&nbsp;:
+</p>
+<ol>
+<li>lorsque la boîte de dialogue est affichée, tous les liens de la page et les éléments <code>button</code>, sauf le bouton de la fenêtre, sont affectés d'un attribut <code>tabindex="-1"</code>&nbsp;;</li>
+<li>lorsque la boîte de dialogue est fermée, tous les attributs précédemment insérés sont supprimés&nbsp;;</li>
+<li>la boîte de dialogue étant fermée via <code>display:none</code>, il n'est pas nécessaire d'affecter un attribut <code>tabindex="-1"</code> au bouton de la fenêtre de dialogue.</li>
+</ol>
+</section>
+</main>
+
+	<aside>
+		<h3>Ressources</h3>
+		<ul>
+		<li><a href="http://www.w3.org/TR/2010/WD-wai-aria-20100916/roles#alertdialog"><code>role="alerdialog"</code> dans la spécification ARIA (en anglais)</a></li>
+		<li><a href="http://www.w3.org/TR/wai-aria-practices/#alert"><span lang="en">Design Pattern</span> pour <code>role="alert"</code> (en anglais)</a></li>
+		</ul>
+	</aside>
+<span id="noclick"></span>
+
+	<footer id="footer" role="contentinfo">
+		<p><img src="img/access42.svg" alt="Access42" width="120" /></p>
+	</footer>
+
+</div>
+</body>
+</html>

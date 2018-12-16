@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Barre de progression - ARIA au pays du Web</title>
+	<link rel="stylesheet" id="Cstyle" href="css/style.css" type="text/css" media="screen" title="style par defaut" />
+</head>
+
+<body>
+<div id="screen">
+	<p class="skiplink"><a href="#main">contenu</a></p>
+	<header role="banner" class="main-header">
+		<h1 id="banner">ARIA au pays du Web</h1>
+		<img src="img/access42.svg" alt="Access42" width="60" />
+	</header>
+	
+	<nav id="menu" role="navigation" class="clearfix">
+		<ul id="nav">
+		 <li><a href="index.html"><span class="coche"></span>Accueil</a></li>
+		 <li><a href="landmark.html"><span class="coche"></span>Landmark</a></li>
+		 <li><a href="alerte.html"><span class="coche"></span>Alerte</a></li>
+		 <li><a href="slider.html"  ><span class="coche"></span><span lang="en">Slider</span></a></li>
+		 <li><a href="progressbar.html"  class="active" title="Barre de progression - page active"><span class="coche"></span>Barre de progression</a></li>
+		 <li><a href="formulaire.html"  title="un formulaire intelligent"><span class="coche"></span>Formulaire</a></li>
+		 <li><a href="live_region.html"  title="Live region : une région vivante polie"><span class="coche"></span><span lang="en">Live region</span></a></li>
+		 <li><a href="chat.html"  title="Un module de chat intelligent"><span class="coche"></span>Chat</a></li>
+		</ul>
+	</nav>
+
+<main id="main" role="main" class="main">
+	<h2>Barre de progression</h2>
+	<p>
+	 <span lang="en">Hans Hillen</span> de <a href="http://www.paciellogroup.com/about/people.htm"><span lang="en">The Paciello Group</span></a> a amélioré le support ARIA de certains composants de la bibliothèque <span lang="en">JQuery</span>.
+	</p>
+	<p>
+	 Il présente, notamment, une barre de progression correctement restituée.
+	</p>
+	<h3>Démonstration</h3>
+	<p>
+	 Avec <abbr title="Non Visual Desktop Applciation" lang="en">NVDA</abbr> allez sur la page <a href="http://hanshillen.github.io/jqtest/#goto_slider" lang="en">Accessible jQuery-ui Components Demonstration</a>, choisissez "Progress bar" dans le menu puis tabuler jusqu'au bouton <span lang="en">Trigger Progessbar</span> qui lance la barre de progression.
+	</p>
+	<h4>Restitution vocale</h4>
+	<p>
+	 <abbr>NVDA</abbr> propose deux modes de restitution : la première (par défaut) est uniquement sonore, la seconde est vocale.
+	</p>
+
+	<p>Voici la restitution vocale telle qu'elle est obtenue par NVDA; chaque ligne correspond à la vocalisation d'un élément ou la mise à jour d'un attribut de valeur</p>
+	<div class="parole">
+	<h5 class="titreW">Visionneuse de parole de NVDA</h5>
+	<p>
+	progress dialogue
+	</p>
+	<p>
+	0 pourcent
+	</p>
+	<p>
+	section
+	</p>
+	<p>
+	10 pourcent
+	</p>
+	<p>
+	20 pourcent
+	</p>
+	<p>
+	30 pourcent
+	</p>
+	</div>
+	<h4>Implémentation</h4>
+	<p>L'implémentation utilise deux éléments :</p>
+	<ul>
+	<li>Un <code>div</code> qui constitue la barre de progression et sur lequel est réalisé l'implémentation ARIA</li>
+	<li>Un paragraphe qui contient le label de la barre de progression.</li>
+	</ul>
+	<p>
+	 Les rôles, états et propriétés suivantes sont utilisés
+	</p>
+	<ul>
+	<li><code>role="progressbar"</code> signale que l'élément est une barre de progression. A noter que, de manière implicite, l'état du composant est <code>readonly</code>; l'utilisateur ne peut pas interagir avec lui.</li>
+	<li><code>valuemin="[val]"</code> donne la valeur minimum</li>
+	<li><code>valuemax="[val]"</code> donne la valeur maximum</li>
+	<li><code>valuenow="[val]"</code> donne la valeur actuelle de la progression; cette valeur est mise à jour dynamiquement par javascript</li>
+	<li><code>valuetext="[text]"</code> donne le texte à vocaliser en alternative à <code>valuenow</code>; si <code>valuetext</code> est absent, c'est donc <code>valuenow</code> qui sera vocalisé</li>
+	<li><code>labelledby="[ID]"</code> indique l'élément à utiliser comme label pour nommer la barre de progression; <abbr>NVDA</abbr> ou <span lang="en">JAWS</span> n'ont pas pu vocaliser cet élément.</li>
+	</ul>
+	<h4>Fonctionnement</h4>
+	<p>
+	 Le fonctionnement est identique à celui d'un slider, notamment pour la gestion des mises à jour de <code>valuenow</code> et <code>valuetext</code> qui informe de l'état de la progression.
+	</p>
+</main>
+
+<aside>
+<h3>Ressources</h3>
+<ul>
+<li><a href="http://www.w3.org/TR/2010/WD-wai-aria-20100916/roles#progressbar"><code>progressbar</code> dans la spécification ARIA (en anglais)</a></li>
+</ul>
+</aside>
+
+	<footer id="footer" role="contentinfo">
+		<p><img src="img/access42.svg" alt="Access42" width="120" /></p>
+	</footer>
+
+</div>
+</body>

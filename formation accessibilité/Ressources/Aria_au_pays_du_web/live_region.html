@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Live Region - ARIA au pays du Web</title>
+	<link rel="stylesheet" id="Cstyle" href="css/style.css" type="text/css" media="screen" title="style par defaut" />
+	<script type="text/javascript" src="js/live_region.js"></script>
+</head>
+
+<body>
+<div id="screen">
+	<p class="skiplink"><a href="#main">contenu</a></p>
+	<header role="banner" class="main-header">
+		<h1 id="banner">ARIA au pays du Web</h1>
+		<img src="img/access42.svg" alt="Access42" width="60" />
+	</header>
+	
+	<nav id="menu" role="navigation" class="clearfix">
+		<ul id="nav">
+		 <li><a href="index.html"><span class="coche"></span>Accueil</a></li>
+		 <li><a href="landmark.html"><span class="coche"></span>Landmark</a></li>
+		 <li><a href="alerte.html"><span class="coche"></span>Alerte</a></li>
+		 <li><a href="slider.html"  ><span class="coche"></span><span lang="en">Slider</span></a></li>
+		 <li><a href="progressbar.html"  ><span class="coche"></span>Barre de progression</a></li>
+		 <li><a href="formulaire.html"  title="un formulaire intelligent"><span class="coche"></span>Formulaire</a></li>
+		 <li><a href="live_region.html"  title="Live region : une région vivante polie - page active"  class="active"><span class="coche"></span><span lang="en">Live region</span></a></li>
+		 <li><a href="chat.html"  title="Un module de chat intelligent"><span class="coche"></span>Chat</a></li>
+		</ul>
+	</nav>
+
+<main id="main" role="main" class="main">
+<h2>Les <span lang="en">live regions</span></h2>
+<p>
+ Cette démonstration illustre les principes de base de gestion des <span lang="en">live regions</span>
+</p>
+<p>
+ ARIA propose un ensemble de valeur liées à la propriété <code>aria-live</code> selon la nature et le comportement d'une <span lang="en">live region</span>. Ces valeurs sont décrites dans la partie implémentation.
+</p>
+<p>
+La valeur utilisée ici est <code>aria-live="polite"</code>; elle signale que le lecteur d'écran doit vocaliser la région dynamique lorsque l'utilisateur est disponible; autrement dit, lorsqu'il ne réalise aucune action et qu'aucun contenu n'est en cours de vocalisation.
+</p>
+<h3>Démonstration</h3>
+<p>
+ Avec <abbr title="Non Visual Desktop Applciation" lang="en">NVDA</abbr> tabuler jusqu'au bouton <q>Démarrer l'exemple</q> qui lance la région dynamique.
+</p>
+<p>
+Laisser vocaliser quelques messages mis à jour de manière dynamique  puis tabuler de nouveau.
+</p>
+<p>
+<button onclick="runExample()">Démarrer l'exemple</button>
+<p>
+<span id="myLiveRegion1" aria-live="polite">
+
+</span>
+</p>
+<div id="coment" class="invisible" tabindex="0" onfocus="this.style.top='0'">
+<p>
+Tant qu'on est en train de lire cette zone, le retour de la <span lang="en">Live region</span> est inhibé.
+</p>
+<p>
+En revanche, dés qu'on cesse une action, la <span lang="en">Live region</span> est lue.
+</p>
+</div>
+<h4>Restitution vocale</h4>
+<p>Voici la restitution vocale telle qu'elle est obtenue par NVDA; chaque ligne correspond à la vocalisation d'un élément ou la mise à jour d'un attribut de valeur</p>
+<div class="parole">
+<h5 class="titreW">Visionneuse de parole de NVDA</h5>
+<p>
+Démarrer l'exemple bouton
+</p>
+<p>
+Bonjour tout le monde 
+</p>
+<p>
+Je suis une region vivante 
+</p>
+<p>
+Mais je sais rester polie 
+</p>
+<p>
+Bonjour tout le monde 
+</p>
+<p>
+Tant qu'on est en train de lire cette zone, le retour de la Live region est inhibé.  En revanche, dés qu'on cesse une action, la Live region est lue.
+</p>
+<p> 
+Je suis une region vivante 
+</p>
+</div>
+<h4>Explication</h4>
+<p>
+La valeur <code>polite</code> signale qu'il faut suspendre la vocalisation de la region dynamique lorsque l'utilisateur n'est pas disponible, ce qui est le cas lorsqu'on tabule sur le texte suivant.
+</p>
+<h4>Implémentation</h4>
+<p>L'implémentation utilise un élement :</p>
+<ul>
+<li>Un <code>span</code> vide dont le contenu est mis à jour de manière dynamique via des valeurs insérées par Javascript. Le même procédé serait également valable avec une requête Ajax.</li>
+</ul>
+<p>
+ Les rôles, états et propriétés suivantes sont utilisés
+</p>
+<ul>
+<li><code>aria-live="polite"</code> signale que la région dynamique est vocalisé lorsque c'est possible sans interrompre l'utilisateur.</li>
+</ul>
+<h4>Autre valeurs de la propriété <code>aria-live</code></h4>
+<ul>
+<li><code>aria-live="off"</code> Valeur par défaut, la zone n’est pas lue du tout.</li>
+<li><code>aria-live="assertive"</code> La zone est lue en interrompant l’utilisateur dès que c’est possible.</li>
+</ul>
+<h4>Valeurs additionnelles pour la propriété <code>aria-live</code></h4>
+<p>
+En complément, ARIA propose plusieurs propriétés qui permettent de spécifier la manière dont la zone dynamique doit être vocalisée.
+</p>
+<ul>
+<li><code>atomic = true/false</code> Toute la zone ou seulement la partie mise à jour est lue.</li>
+<li><code>relevant = additions /removal</code> Les ajouts et les suppressions de contenus (dom) sont signalés.</li>
+<li><code>relevant=text/all</code> Seuls les changements de texte ou tous les changements sont signalés.</li>
+<li><code>aria-busy=true/false</code> Signale que la zone est en train d’être mise à jour.</li>
+</ul>
+</main>
+
+<aside>
+	<h3>Ressources</h3>
+	<ul>
+	<li><a href="http://www.w3.org/TR/2010/WD-wai-aria-20100916/states_and_properties#aria-live"><code>aria-live</code> dans la spécification ARIA (en anglais)</a></li>
+	<li><a href="http://www.w3.org/WAI/PF/aria-practices/#liveprops"><span lang="en">5.2.1. Live Region Properties and How to Use Them</span> (en anglais)</a></li>
+	</ul>
+</aside>
+
+	<footer id="footer" role="contentinfo">
+		<p><img src="img/access42.svg" alt="Access42" width="120" /></p>
+	</footer>
+
+</div>
+</body>

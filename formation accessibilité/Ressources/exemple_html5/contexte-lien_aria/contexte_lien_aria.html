@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+	<head>
+		<title>Contexte de lien ARIA</title>
+		<meta charset="utf-8">
+	</head>
+
+	<body>
+		
+		<p id="toto">Avec aria-label</p>
+		
+		<p><a href="google.com" aria-label="Test contexte aria, avec aria-label">Test contexte aria</a></p>
+		
+		<p id="tutu">Avec aria-labelledby</p>
+
+		<p><a href="google.com" aria-labelledby="tutu">Test contexte aria</a></p>
+		
+		<p id="titi">Avec aria-describedby</p>
+		
+		<p><a href="google.com" aria-describedby="titi">Test contexte aria</a></p>
+
+		<p id="tata">Avec aria-describedby</p>
+
+		<p><input type="text" aria-labelledby="tata" /></p>
+
+	</body>
+
+</html>

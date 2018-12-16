@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Formulaire - ARIA au pays du Web</title>
+	<link rel="stylesheet" id="Cstyle" href="css/style.css" type="text/css" media="screen" title="style par defaut" />
+	<script type="text/javascript" src="js/formulaire.js"></script>
+</head>
+
+<body>
+<div id="screen">
+	<p class="skiplink"><a href="#main">contenu</a></p>
+	<header role="banner" class="main-header">
+		<h1 id="banner">ARIA au pays du Web</h1>
+		<img src="img/access42.svg" alt="Access42" width="60" />
+	</header>
+	
+	<nav id="menu" role="navigation" class="clearfix">
+		<ul id="nav">
+		 <li><a href="index.html"><span class="coche"></span>Accueil</a></li>
+		 <li><a href="landmark.html"><span class="coche"></span>Landmark</a></li>
+		 <li><a href="alerte.html"><span class="coche"></span>Alerte</a></li>
+		 <li><a href="slider.html"  ><span class="coche"></span><span lang="en">Slider</span></a></li>
+		 <li><a href="progressbar.html"  ><span class="coche"></span>Barre de progression</a></li>
+		 <li><a href="formulaire.html"  title="un formulaire intelligent - page active"  class="active"><span class="coche"></span>Formulaire</a></li>
+		 <li><a href="live_region.html" ><span class="coche"></span><span lang="en">Live region</span></a></li>
+		 <li><a href="chat.html"  title="Un module de chat intelligent"><span class="coche"></span>Chat</a></li>
+		</ul>
+	</nav>
+
+<main id="main" role="main" class="main">
+<h2>Formulaire</h2>
+<ul class="Smenu">
+<li><a href="#sm1">Préalable</a></li>
+<li><a href="#sm2">Démonstration 1</a></li>
+</ul>
+</ul>
+<p>
+ Le but de cette démonstration est de montrer comment on peut améliorer la restitution d'un formulaire grâce aux deux propriétés <code>labelledby</code> et <code>describedby</code>.
+</p>
+<p>
+ Cette démonstration fonctionne avec NVDA et Firefox 3.6.
+</p>
+<h3 id="sm1">Préalable : un formulaire accessible au sens de <abbr title="Web Content Accessibility Guideline" lang="en">WCAG</abbr></h3>
+<p>
+Le formulaire ci-dessous est conforme à <abbr>WCAG 2</abbr>
+</p>
+<p>
+Avec JAWS parcourez ce formulaire.
+</p>
+<div class="demo-form">
+<form method="formulaire.php">
+<fieldset>
+<legend>Commande de fruits</legend>
+<label for="S1fruit">Type de fruits</label>
+<select id="S1fruit">
+ <option value="1">Orange</option>
+ <option value="2">Pomme</option>
+ <option value="3">Banane</option>
+</select>
+<br />
+<label for="Scommande">Quantité</label>
+<input id="Scommande" value="10" type="text" >kilos
+<input id="Senvoi" type="submit" value="envoyer" title="envoyer votre commande" />
+</fieldset>
+</form>
+<div><h4>Attention aux délais</h4>
+<ul>
+<li>Plus de 30 kg, prévoir 10 jours</li>
+<li>Plus de 60 kg, prévoir 3 semaines</li>
+<li>Plus de 100 kg, nous consulter</li>
+</ul>
+</div>
+</div>
+<p>
+Le niveau d'information de ce formulaire est réduit et d'importantes informations comme les délais sont absentes; ARIA va nous permettre de rendre ce formulaire beaucoup plus convivial.
+</p>
+<h3 id="sm2">Démonstration 1</h3>
+<p>
+ Parcourez le formulaire avec JAWS jusqu'au bouton envoyer.
+</p>
+<div class="demo-form">
+<form method="formulaire.php">
+<fieldset>
+<legend id="legend">Commande de fruits</legend>
+<label for="Sfruit">Type de fruits</label>
+<select id="Sfruit">
+ <option value="Orange">Orange</option>
+ <option value="Pomme">Pomme</option>
+ <option value="Banane">Banane</option>
+</select>
+<br />
+<span id="label"><label id="lab" for="commande">Quantité</label></span>
+<input id="commande" value="10" aria-labelledby="lab unite" aria-describedby="disponible" type="text">
+<span id="unite">kilo</span>
+<input id="envoi" onfocus="UpdateMsg()" onblur="closeMsg()" type="submit" aria-labelledby="Sconfirm" value="envoyer" />
+<div id="Sconfirm"></div>
+</fieldset>
+</form>
+<div id="disponible"><h4>Attention aux <span id="delai">délais</span></h4>
+<ul>
+<li>Plus de 30 kg, prévoir <span id="J10">10 jours</span></li>
+<li>Plus de 60 kg, prévoir <span id="3W">3 semaines</span></li>
+<li>Plus de 100 kg, <span id="NC">nous consulter</span></li>
+</ul>
+</div>
+</div>
+<h4>Explication démonstration 1</h4>
+<p>
+Une propriété <code>labelledby</code> a été implémentée sur le champ <q>commande</q>; elle référence plusieurs éléments : l'élément <code>label</code> du champ, le champ <q>commande</q> lui-même et l'élément <q>unité</q>.
+</p>
+<p>
+Lors de la prise de focus sur le champ <q>commande</q>, l'ensemble de ces éléments seront vocalisés dans l'ordre dans lequel les références <code>ID</code> sont implémentées.
+</p>
+<p>
+Il s'agit d'un mécanisme identique à l'utilisation de l'attribut <code>headers</code> dans un tableau de données.
+</p>
+<p>
+Une propriété <code>describedby</code> a été implémentée sur le champ <q>commande</q> et indique que la zone <q>attention aux délais</q> contient des informations complémentaires. Lors de la prise de focus, cette zone est vocalisée, jouant le rôle d'un message d'aide.
+</p>
+<p>
+Une propriété <code>labelledby</code> a été implémentée sur le bouton de soumission; elle référence un élément caché qui va contenir un message d'aide dynamique géré par javascript.
+</p>
+<p>
+Lors de la prise de focus sur le bouton de soumission, le bouton et le message d'aide seront vocalisés.
+</p>
+<p>
+Ce mécanisme très simple et qui n'utilise que les deux propriétés <code>labelledby</code> et <code>describedby</code> permet de lier des informations aux champs et aux boutons et de fournir ainsi des messages d'aide très précis.
+</p>
+<h3>Implémentation</h3>
+<p>
+ Les rôles, états et propriétés suivantes sont utilisés
+</p>
+<ul>
+<li><code>labelledby="[ID ID ID]"</code> indique les éléments à utiliser comme label.</li>
+<li><code>describedby="[ID]"</code> indique l'élément à utiliser comme information complémentaire.</li>
+</ul>
+</main>
+
+<aside>
+<h3>Ressources</h3>
+<ul>
+<li><a href="http://www.w3.org/TR/2010/WD-wai-aria-20100916/states_and_properties#aria-labelledby"><code>labelledby</code> dans la spécification ARIA (en anglais)</a></li>
+<li><a href="http://www.w3.org/TR/2010/WD-wai-aria-20100916/states_and_properties#aria-describedby"><code>describedby</code> dans la spécification ARIA (en anglais)</a></li>
+</ul>
+</aside>
+
+	<footer id="footer" role="contentinfo">
+		<p><img src="img/access42.svg" alt="Access42" width="120" /></p>
+	</footer>
+
+</div>
+</body>
+</html>

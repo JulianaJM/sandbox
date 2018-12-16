@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Landmark - ARIA au pays du Web</title>
+	<link rel="stylesheet" id="Cstyle" href="css/style.css" type="text/css" media="screen" title="style par defaut" />
+</head>
+
+<body>
+<div id="screen">
+	<p class="skiplink"><a href="#main">contenu</a></p>
+	<header role="banner" class="main-header">
+		<h1 id="banner">ARIA au pays du Web</h1>
+		<img src="img/access42.svg" alt="Access42" width="60" />
+	</header>
+	
+	<nav id="menu" role="navigation" class="clearfix">
+		<ul id="nav">
+		 <li><a href="index.html"><span class="coche"></span>Accueil</a></li>
+		 <li><a href="landmark.html"  class="active" title="Landmark - page active"><span class="coche"></span>Landmark</a></li>
+		 <li><a href="alerte.html"><span class="coche"></span>Alerte</a></li>
+		 <li><a href="slider.html"  ><span class="coche"></span><span lang="en">Slider</span></a></li>
+		 <li><a href="progressbar.html"  ><span class="coche"></span>Barre de progression</a></li>
+		 <li><a href="formulaire.html"  title="un formulaire intelligent"><span class="coche"></span>Formulaire</a></li>
+		 <li><a href="live_region.html"  title="Live region : une région vivante polie"><span class="coche"></span><span lang="en">Live region</span></a></li>
+		 <li><a href="chat.html"  title="Un module de chat intelligent"><span class="coche"></span>Chat</a></li>
+		</ul>
+	</nav>
+
+<main id="main" role="main" class="main">
+
+<section>
+	<h2>Les <span lang="en">landmarks</span></h2>
+	<p>
+	 L'attribut <code>role</code> propose un ensemble de valeurs permettant de définir les grandes structures de la page.
+	</p>
+	<p>
+	 Ces repères peuvent servir de point de navigation (de manière similaire aux titres) dans la structure pour naviguer rapidement.
+	</p>
+	<h3>Démonstration</h3>
+	<p>
+	Avec <abbr title="Non Visual Desktop Application">NVDA</abbr>, visiter le site <a href="http://www.alsacréations.com">Alsacréations</a>.</p>
+	<p>Vous avez deux manières d'utiliser les <span lang="en">landmarks</span>.
+	</p>
+	<ol>
+	<li>Utiliser la touche <span class="touche">d</span>. Chaque pression sur la touche vous permettra d'atteindre les repères les uns après les autres.</li>
+	<li>Utiliser le raccourci <span class="touche"><abbr>NVDA</abbr> + F7</span> et choisir «&nbsp;repère&nbsp;». La liste des repères apparaît&nbsp;: sélectionner un repère pour l'atteindre.</li>
+	</ol>
+	<h3>Les repères sur cette page</h3>
+	<p>
+	Sur cette page, quatre repères ont été implémentés&nbsp;:
+	</p>
+	<ul>
+	<li><code>role="banner"</code> englobe le logo et le titre&nbsp;;</li>
+	<li><code>role="navigation"</code> englobe le menu de navigation&nbsp;;</li>
+	<li><code>role="main"</code> englobe la partie centrale du contenu&nbsp;;</li>
+	<li><code>role="contentinfo"</code> englobe le pied de page.</li>
+	</ul>
+	<h4>Restitution vocale</h4>
+	<p>Voici la restitution vocale telle qu'elle est obtenue avec NVDA. Chaque ligne correspond à la vocalisation d'un repère</p>
+	<div class="parole">
+	<h5 class="titreW">Visionneuse de parole de NVDA</h5>
+	<p>repère bannière  Qelios - Paroles d'experts graphique  - Démonstrations de l'atelier  Aria au pays du Web  W3Café accessibilité  titre niveau 1</p>
+	<p>repère navigation  liste de 8 éléments visités lien</p>
+	<p>hors de liste repère principal  Les landmarks titre niveau 2</p>
+	<p>repère information sur le contenu  Qelios - 21, rue de la Guyenne - 66100 Perpignan - +33 (0)4 68 85 25 42</p> 
+	</div>
+	</section>
+</main>	
+<aside>
+	<h3>Ressource</h3>
+	<ul>
+		<li><a href="http://www.w3.org/TR/2010/WD-wai-aria-20100916/roles#landmark_roles"><code>landmark</code> dans la specification ARIA (en anglais)</a></li>
+		<li><a href="http://www.w3.org/TR/wai-aria-practices/#kbd_layout"><span lang="en">3.2.7. Providing Navigable Structure within Web Pages</span></a></li>
+	</ul>
+</aside>
+
+	<footer id="footer" role="contentinfo">
+		<p><img src="img/access42.svg" alt="Access42" width="120" /></p>
+	</footer>
+
+</div>
+</body>
+</html>

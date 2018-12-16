@@ -1,0 +1,27 @@
+.elt1, 
+.elt2{
+	min-height:100px;
+	width:30em;
+	margin:auto;
+	background:#333;
+	margin-top:50px;
+}
+
+
+@media screen and (max-width:800px){
+	.elt1{
+		background:red;
+	}
+}
+
+
+@media screen and (max-width:50em){
+	.elt2{
+		background:blue;
+	}
+}
+
+
+:focus{
+/*	outline:2px solid red;*/
+}

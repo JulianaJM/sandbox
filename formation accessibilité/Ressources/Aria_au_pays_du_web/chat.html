@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Chat - ARIA au pays du Web</title>
+	<link rel="stylesheet" id="Cstyle" href="css/style.css" type="text/css" media="screen" title="style par defaut" />
+</head>
+
+<body>
+<div id="screen">
+	<p class="skiplink"><a href="#main">contenu</a></p>
+	<header role="banner" class="main-header">
+		<h1 id="banner">ARIA au pays du Web</h1>
+		<img src="img/access42.svg" alt="Access42" width="60" />
+	</header>
+	
+	<nav id="menu" role="navigation" class="clearfix">
+		<ul id="nav">
+		 <li><a href="index.html"><span class="coche"></span>Accueil</a></li>
+		 <li><a href="landmark.html"><span class="coche"></span>Landmark</a></li>
+		 <li><a href="alerte.html"><span class="coche"></span>Alerte</a></li>
+		 <li><a href="slider.html"><span class="coche"></span><span lang="en">Slider</span></a></li>
+		 <li><a href="progressbar.html"><span class="coche"></span>Barre de progression</a></li>
+		 <li><a href="formulaire.html"  title="un formulaire intelligent"><span class="coche"></span>Formulaire</a></li>
+		 <li><a href="live_region.html"  title="Live region : une région vivante polie"><span class="coche"></span><span lang="en">Live region</span></a></li>
+		 <li><a href="chat.html" class="active" title="Un module de chat intelligent- page active" ><span class="coche"></span>Chat</a></li>
+		</ul>
+	</nav>
+
+<main id="main" role="main" class="main">
+<h2>Un module de chat intelligent</h2>
+<p>
+ Sébastien Delorme de la société <a href="http://www.atalan.fr/">Atalan</a> a réalisé, pour le 13ième séminaire technique AccessiWeb, une <a href="http://ideance.net/publications/live-regions/index.html">démonstration d'un module de chat</a> fonctionnant sur le principe des <span lang="en">live regions</span> décrit dans la page <q lang="en">live region</q>.
+</p>
+<p>
+La démonstration est très complète; nous n'en donnons, ici, qu'un bref résumé.
+</p>
+<h3>Démonstration</h3>
+<p>
+La démonstration nécessite deux interlocuteurs; elle utilise un procédé Ajax de gestion de chat simplifié.
+</p>
+<p>
+Avec <abbr title="Non Visual Desktop Application" lang="en">NVDA</abbr>, utiliser le module de chat <a href="http://ideance.net/publications/live-regions/demonstration_1.html">première démonstration</a>.
+</p>
+<p>
+L'utilisateur est obligé d'effectuer des allers-retours entre le champ de formulaire et la zone mise à jour pour pouvoir suivre une conversation.
+</p>
+<p>
+Utiliser maintenant la <a href="http://ideance.net/publications/live-regions/demonstration_2.html">seconde démonstration</a> en saissisant votre message et en validant avec la touche <span class="touche">Entrée</span>.
+</p>
+<p>
+L'utilisateur peut entendre l'ensemble de la conversation sans quitter le champ de formulaire lui permettant de saisir son message.
+</p>
+<p>
+La zone de mise à jour a été déclarée comme étant une région dynamique avec la propriété <code>aria-live="polite"</code>; en complément il est indiqué, via la propriété <code>aria-atomic="false"</code>, que seul le dernier texte de la zone mise à jour doit être vocalisé.
+</p>
+<p>
+Vous trouverez dans la partie <a href="http://ideance.net/publications/live-regions/explications.html">explication</a> les détails techniques de l'implémentation qui sont identiques à ceux décrits dans la page <q>Live region</q>
+</p>
+<h4>Implémentation</h4>
+<p>L'implémentation utilise deux élements :</p>
+<ul>
+<li>Une liste dont chaque item représente un message.</li>
+<li>Un formulaire qui contient le champ de saisie des messages.</li>
+</ul>
+<p>
+ Les rôles, états et propriétés suivantes sont utilisés :
+</p>
+<ul>
+<li><code>aria-live="polite"</code> signale que la région dynamique est vocalisée lorsque c'est possible, sans interrompre l'utilisateur.</li>
+<li><code>aria-atomic="false"</code> signale que seul le contenu mis à jour doit être lu.</li>
+</ul>
+<h4>Autre valeurs de la propriété <code>aria-live</code></h4>
+<ul>
+<li><code>aria-live="off"</code> Valeur par défaut, la zone n’est pas lue du tout.</li>
+<li><code>aria-live="assertive"</code> La zone est lue en interrompant l’utilisateur dés que c’est possible.</li>
+<li><code>aria-live="rude"</code> La zone est lue en interrompant l’utilisateur immédiatement..</li>
+</ul>
+<h4>Valeurs additionnelles pour la propriété <code>aria-live</code></h4>
+<p>
+En complément, ARIA propose plusieurs propriétés qui permettent de spécifier la manière dont la zone dynamique doit être vocalisée.
+</p>
+<ul>
+<li><code>atomic = true/false</code> Toute la zone ou seulement la partie mise à jour est lue.</li>
+<li><code>relevant = additions /removal</code> Les ajouts et les suppressions de contenus (dom) sont signalés.</li>
+<li><code>relevant=text/all</code> Seuls les changements de texte ou tous les changements sont signalés.</li>
+<li><code>aria-busy=true/false</code> Signale que la zone est en train d’être mise à jour.</li>
+</ul>
+
+</main>
+
+<aside>
+	<h3>Ressources</h3>
+		<ul>
+		<li><a href="http://www.w3.org/TR/2010/WD-wai-aria-20100916/states_and_properties#aria-live"><code>aria-live</code> dans la spécification ARIA (en anglais)</a></li>
+		<li><a href="http://www.w3.org/WAI/PF/aria-practices/#liveprops"><span lang="en">5.2.1. Live Region Properties and How to Use Them</span> (en anglais)</a></li>
+		</ul>
+</aside>
+
+	<footer id="footer" role="contentinfo">
+		<p><img src="img/access42.svg" alt="Access42" width="120" /></p>
+	</footer>
+
+</div>
+</body>
+</html>

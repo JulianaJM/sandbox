@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Slider - ARIA au pays du Web</title>
+	<link rel="stylesheet" id="Cstyle" href="css/style.css" type="text/css" media="screen" title="style par defaut" />
+</head>
+
+<body>
+<div id="screen">
+	<p class="skiplink"><a href="#main">contenu</a></p>
+	<header role="banner" class="main-header">
+		<h1 id="banner">ARIA au pays du Web</h1>
+		<img src="img/access42.svg" alt="Access42" width="60" />
+	</header>
+	
+	<nav id="menu" role="navigation" class="clearfix">
+		<ul id="nav">
+		 <li><a href="index.html"><span class="coche"></span>Accueil</a></li>
+		 <li><a href="landmark.html"><span class="coche"></span>Landmark</a></li>
+		 <li><a href="alerte.html"><span class="coche"></span>Alerte</a></li>
+		 <li><a href="slider.html"  class="active" title="Slider - page active" ><span class="coche"></span><span lang="en">Slider</span></a></li>
+		 <li><a href="progressbar.html"><span class="coche"></span>Barre de progression</a></li>
+		 <li><a href="formulaire.html"  title="un formulaire intelligent"><span class="coche"></span>Formulaire</a></li>
+		 <li><a href="live_region.html"  title="Live region : une région vivante polie"><span class="coche"></span><span lang="en">Live region</span></a></li>
+		 <li><a href="chat.html"  title="Un module de chat intelligent"><span class="coche"></span>Chat</a></li>
+		</ul>
+	</nav>
+
+<main id="main" role="main" class="main">
+<h2>Les <span lang="en">sliders</span></h2>
+<p>
+ <span lang="en">Hans Hillen</span> de <a href="https://www.paciellogroup.com/about/people.htm"><span lang="en">The Paciello Group</span></a> a amélioré le support ARIA de certains composants de la bibliothèque <span lang="en">jQuery</span>.
+</p>
+<p>
+ Il présente, notamment, deux <span lang="en">sliders</span> très correctement restitués.
+</p>
+<h3>Démonstration</h3>
+<p>
+ Avec <abbr title="Non Visual Desktop Application">NVDA</abbr>, allez sur la page <a href="https://hanshillen.github.io/jqtest/#goto_slider" lang="en">Accessible jQuery-ui Components Demonstration</a>, puis tabuler jusqu'à prendre le focus sur le premier <span lang="en">slider</span>.
+</p>
+<p>
+À la prise de focus sur l'élément déclaré comme étant un <span lang="en">slider</span> (<code>role="slider"</code>), <abbr title="Non Visual Desktop Application">NVDA</abbr> annonce le label ou titre, le type d'élément («&nbsp;potentiomètre&nbsp;») et la valeur ("0$").
+</p>
+<p>
+ L'utilisateur peut alors incrémenter ou décrémenter la valeur avec les touches de direction. <abbr title="Non Visual Desktop Application">NVDA</abbr> annonce les valeurs mises à jour dés que possible.
+</p>
+<h4>Restitution vocale</h4>
+<p>Voici la restitution vocale telle qu'elle est obtenue par NVDA. Chaque ligne correspond à la vocalisation d'un élément ou à la mise à jour d'un attribut de valeur.</p>
+<div class="parole">
+<h5 class="titreW">Visionneuse de parole de NVDA</h5>
+<p>
+price Potentiomètre 0 $
+</p>
+<p>
+1 $
+</p>
+<p>
+2 $
+</p>
+<p>
+3 $
+</p>
+<p>
+4 $
+</p>
+<p>
+5 $
+</p>
+<p>
+6 $
+</p>
+</div>
+<h4>Implémentation</h4>
+<p>L'implémentation utilise trois élements principaux.</p>
+<ul>
+<li>Un <code>div</code> utilisé pour habiller le slider.</li>
+<li>Un <code>span</code> utilisé pour afficher la valeur actuelle du curseur.</li>
+<li>Un lien vide utilisé comme curseur.</li>
+</ul>
+<p>
+ C'est sur ce lien vide que l'implémenation ARIA est réalisée. Les rôles, états et propriétés suivantes sont utilisés :
+</p>
+<ul>
+<li><code>role="slider"</code> signale que l'élément est un <span lang="en">slider</span>; à noter que la technologie d'assistance devrait annoncer la navigation pour cet élement ("utiliser les touches de direction pour…"), <span lang="en">Jaws</span> le fait mais <abbr lang="en">NVDA</abbr> non</li>
+<li><code>valuemin="[val]"</code> donne la valeur minimum du curseur</li>
+<li><code>valuemax="[val]"</code> donne la valeur maximum du curseur</li>
+<li><code>valuenow="[val]"</code> donne la valeur actuelle du curseur; cette valeur est mise à jour dynamiquement par javascript</li>
+<li><code>valuetext="[text]"</code> donne le texte à vocaliser en alternative à <code>valuenow</code>; si <code>valuetext</code> est absent, c'est donc <code>valuenow</code> qui sera vocalisé</li>
+<li><code>title="[text]"</code> donne le nom de l'élément.</li>
+</ul>
+<p>
+ Une autre propriété <code>aria-orientation="vertical/horizontal"</code> permet de signaler l'orientation du composant; la valeur par défaut est <code>horizontal</code>. A noter que <abbr>NVDA</abbr> n'implémente pas cette indication.
+</p>
+<p>
+ Dans cette implémentation, le <span lang="en">slider</span> est accompagné d'un contrôle de formulaire <code>input</code> au titre de l'alternative à javascript.
+</p>
+<h4>Fonctionnement</h4>
+<p>
+ le déplacement du curseur et la mise à jour de <code>valuenow</code> et <code>valuetext</code> sont pris en charge par javascript.
+</p>
+<h4>Navigation clavier</h4>
+<p>
+ les touches de direction droit et haut incrémente le slider; les touches gauche et bas décrémente le slider. Ces indications sont fournies par le <span lang="en">Design pattern</span> (voir en ressources).
+</p>
+<h3>Autre exemple</h3>
+<p>
+l'exemple est accompagné d'un second <span lang="en">slider</span> avec deux curseurs; il permet de tester la gestion et la restitution des valeurs paramétrées par intervalle.
+</p>
+
+</main>
+
+<aside>
+
+<h3>Ressources</h3>
+<ul>
+<li><a href="http://www.w3.org/TR/2010/WD-wai-aria-20100916/roles#slider"><code>slider</code> dans la spécification ARIA (en anglais)</a></li>
+<li><a href="http://www.w3.org/TR/wai-aria-practices/#slider"><span lang="en">Design Pattern</span> pour le <span lang="en">slider</span> (en anglais)</a></li>
+</ul>
+</aside>
+
+	<footer id="footer" role="contentinfo">
+		<p><img src="img/access42.svg" alt="Access42" width="120" /></p>
+	</footer>
+
+</div>
+</body>

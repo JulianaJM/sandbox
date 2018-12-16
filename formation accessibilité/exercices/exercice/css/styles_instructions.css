@@ -1,0 +1,775 @@
+/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in
+ *    IE on Windows Phone and in iOS.
+ */
+
+html {
+	line-height: 1.15; /* 1 */
+	-ms-text-size-adjust: 100%; /* 2 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers (opinionated).
+ */
+
+body {
+	margin: 0;
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+	display: block;
+}
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+	box-sizing: content-box; /* 1 */
+	height: 0; /* 1 */
+	overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+	font-family: monospace, monospace; /* 1 */
+	font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+
+a {
+	background-color: transparent; /* 1 */
+	-webkit-text-decoration-skip: objects; /* 2 */
+}
+
+/**
+ * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+
+b,
+strong {
+	font-weight: inherit;
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+	font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+	font-family: monospace, monospace; /* 1 */
+	font-size: 1em; /* 2 */
+}
+
+/**
+ * Remove the border on images inside links in IE 10-.
+ */
+
+img {
+	border-style: none;
+}
+
+/**
+ * Hide the overflow in IE.
+ */
+
+svg:not(:root) {
+	overflow: hidden;
+}
+
+
+
+/*	@subsection BREAKPOINTS */
+
+/* 55em = 880px */
+
+/* 40em = 640px */
+
+/*  @subsection FONTS */
+
+@font-face {
+	font-family: 'GeoBlack';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-black-webfont.woff2') format('woff2'),
+		 url('https://mailman.a42.fr/css/fonts/geomanist-black-webfont.woff') format('woff');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GeoBold';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-bold-webfont.woff2') format('woff2'),
+		 url('https://mailman.a42.fr/css/fonts/geomanist-bold-webfont.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GeoMed';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-medium-webfont.woff2') format('woff2'),
+		 url('https://mailman.a42.fr/css/fonts/geomanist-medium-webfont.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GeoBook';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-book-webfont.woff2') format('woff2'),
+		 url('https://mailman.a42.fr/css/fonts/geomanist-book-webfont.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+}
+
+/* Default: Geomanist regular */
+
+@font-face {
+	font-family: 'GeoRegular';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-regular-webfont.woff2') format('woff2'),
+		 url('https://mailman.a42.fr/css/fonts/geomanist-regular-webfont.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GeoRegular';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-bold-webfont.woff2') format('woff2'),
+		 url('https://mailman.a42.fr/css/fonts/geomanist-bold-webfont.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face { /*font-family: 'GeoRegular-Italic';*/
+	font-family: 'GeoRegular';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-regular-italic-webfont.woff2') format('woff2'),
+		 url('https://mailman.a42.fr/css/fonts/geomanist-regular-italic-webfont.woff') format('woff');
+	font-weight: 400;
+	font-style: italic;
+}
+
+/**/
+
+@font-face {
+	font-family: 'GeoBlack-Italic';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-black-italic-webfont.woff2') format('woff2'),
+         url('https://mailman.a42.fr/css/fonts/geomanist-black-italic-webfont.woff') format('woff');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'GeoBold-Italic';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-bold-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://mailman.a42.fr/css/fonts/geomanist-bold-italic-webfont.woff2') format('woff2'),
+         url('https://mailman.a42.fr/css/fonts/geomanist-bold-italic-webfont.woff') format('woff');
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'GeoMed-Italic';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-medium-italic-webfont.woff2') format('woff2'),
+         url('https://mailman.a42.fr/css/fonts/geomanist-medium-italic-webfont.woff') format('woff');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'GeoBook-Italic';
+	src: url('https://mailman.a42.fr/css/fonts/geomanist-book-italic-webfont.woff2') format('woff2'),
+         url('https://mailman.a42.fr/css/fonts/geomanist-book-italic-webfont.woff') format('woff');
+	font-weight: 500;
+	font-style: italic;
+}
+
+body {
+	overflow-x: hidden; /* L’emploi du préfixe -webkit- permet d’élargir le support aux anciennes versions des navigateurs Webkit (Chrome, Safari, Opera). */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+main {
+	position: relative;
+}
+
+
+/**
+ * -------------------------
+ * LAYOUT
+ * -------------------------
+ */
+
+/* cf. http://www.design-fluide.com/01-09-2016/fixer-son-footer-en-bas-de-page-grace-a-flexbox/ */
+
+.a42-layout {
+	width: 100%; /* Cette instruction permet de normaliser la largeur du conteneur, quelque peu dérouté par le double contexte flex. Son utilisation est également nécessaire pour faire fonctionner correctement max-width, au cas où vous voudriez centrer horizontalement le gabarit. */
+	min-height: 100vh; /* L’emploi du préfixe -webkit- permet d’élargir le support aux anciennes versions des navigateurs Webkit (Chrome, Safari, Opera). */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex; /* L’emploi du préfixe -webkit- permet d’élargir le support aux anciennes versions des navigateurs Webkit (Chrome, Safari, Opera). */
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.a42-main {
+	-webkit-flex-grow: 1; /* L’emploi du préfixe -webkit- permet d’élargir le support aux anciennes versions des navigateurs Webkit (Chrome, Safari, Opera). */
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+}
+
+/*	@subsection COLORS */
+
+:root { /* blanc */ /* bleu outremer */ /* gris anthracite */ /* bleu moyen */ /* bleu ciel*/ /* rouge cramoisi */ /* sable */ /* blanc cassé */ /* bleu orage */ /* bleu argentin */
+}
+
+.c0 {
+	color: #fff;
+}
+
+.c1 {
+	color: #0B1B34;
+}
+
+.c2 {
+	color: #343643;
+}
+
+.c3 {
+	color: #A0B0BD;
+}
+
+.c4 {
+	color: #CEDAE6;
+}
+
+.c5 {
+	color: #962E3F;
+}
+
+.c6 {
+	color: #F2EBC7;
+}
+
+.c7 {
+	color: #f9fcff;
+}
+
+.c8 {
+	color: #7d829a;
+}
+
+.c9 {
+	color: #31486e;
+}
+
+.block-c0 {
+	background-color: #fff;
+}
+
+.block-c1 {
+	background-color: #0B1B34;
+	color: #fff;
+}
+
+.block-c1 * {
+	color: #fff;
+}
+
+.block-c2 {
+	background-color: #343643;
+}
+
+.block-c2,
+.block-c2 * {
+	color: #fff;
+}
+
+.block-c3 {
+	background-color: #A0B0BD;
+	color: #0B1B34;
+}
+
+.block-c4 {
+	background-color: #CEDAE6;
+	color: #0B1B34;
+}
+
+.block-c5 {
+	background-color: #962E3F;
+	color: #fff;
+}
+
+.block-c6 {
+	background-color: #F2EBC7;
+	color: #0B1B34;
+}
+
+.block-c7 {
+	background-color: #f9fcff;
+}
+
+.block-c8 {
+	background-color: #7d829a;
+	color: #0B1B34;
+}
+
+.block-c9 {
+	background-color: #31486e;
+	color: #fff;
+}
+
+*[class*="block-"] a,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+	color: inherit;
+}
+
+/*	@subsection TYPO */
+
+body {
+	font-family: "GeoRegular", "Arial", sans-serif;
+	font-size: 100%;
+	line-height: 1.5;
+	color: #0B1B34; /* ? */
+	text-rendering: optimizeLegibility;
+	text-rendering: geometricPrecision;
+	font-smooth: always; /* Magic line that smoothes font-rendering on WebKit engines. */
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased; /* Magic line that smoothes font-rendering on Gecko engines. */
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.inside {
+	width: 49.375em;
+	max-width: 100%;
+	padding: 2em 1em;
+	position: relative;
+	margin: auto;
+}
+
+/**inline semantic element**/
+
+a {
+	color: #962E3F;
+	transition: color .3s, border-color .3s;
+}
+
+a:focus,
+a:hover,
+a:active {
+	color: #0B1B34;
+	text-decoration: none;
+}
+
+abbr {
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+kbd {
+	background: #F2EBC7;
+	border: 1px solid #0B1B34;
+	padding: 1px;
+	border-radius: 1px;
+	font-size: 80%;
+}
+
+code {
+	color: #F2EBC7;
+	background-color: #0B1B34;
+	padding: 1px;
+	font-size: 80%;
+}
+
+code.hljs {
+	margin: 30px 0;
+}
+
+pre code {
+	font-size: 0.9em;
+}
+
+/**HEADINGS**/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	color: #0B1B34;
+	margin-top: 0;
+	line-height: 1.2;
+	clear: both;
+	margin-bottom: .5em;
+}
+
+
+h1,
+h2 {
+	font-family: "GeoBlack", "Arial", sans-serif;
+	text-transform: uppercase;
+}
+
+h3,
+h5 {
+	font-family: "GeoMed", "Arial", sans-serif;;
+}
+
+h4,
+h6 {
+	font-family: "GeoBook", "Arial", sans-serif;;
+}
+
+h2 {
+	line-height: 1.1;
+}
+
+/* >880px */
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+/* Special font-sizes */
+
+.a42-title-alpha {
+	font-size: 2em;
+	line-height: 1.2;
+}
+
+li li {
+	font-size: 100%;
+}
+
+ul li{
+	list-style:none;
+}
+
+ul li:before {
+	content: "";
+	display: inline-block;
+	width: 0.5em;
+	height: 0.5em;
+	background: #A0B0BD;
+	margin-right: 5px;
+	position: relative;
+	top: -1px;
+}
+
+ol {
+	counter-reset: item;
+}
+
+ol>li:before {
+	counter-increment: item;
+	content: counter(item)".";
+	width: 1em;
+	color: #962E3F;
+	margin-right: 5px;
+	position: relative;
+	top: -1px;
+}
+
+
+body {
+	background: #f9fcff;
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box!important;
+}
+
+::-moz-selection {
+	color: white;
+	background-color: #343643;
+}
+
+::selection {
+	color: white;
+	background-color: #343643;
+}
+
+.sr {
+	position: absolute;
+	top: -10000em;
+}
+
+.clear:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+hr { /**dans balise .inside**/
+	margin: 40px 0 40px 0;
+	position: relative;
+	border: 2px solid #000;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+button:focus {
+	outline: 1px dotted #555;
+}
+
+path,
+polygon,
+svg * {
+	fill: currentColor;
+	transition: fill .3s;
+}
+
+/**logo**/
+
+#logo {
+	margin: 0;
+	padding: 0;
+}
+
+#logo * {
+	display: block;
+}
+
+
+.a42-block {
+	padding-top: 2em;
+	padding-bottom: 2em;
+}
+
+.a42-block + .a42-block {
+	padding-top: 0;
+}
+
+.a42-block .inside {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.a42-narrow {
+	box-sizing: content-box;
+	//max-width: 51.375em; /* 822px : 790 + 16 + 16 */
+	max-width: 49.375em; /* 790px */
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 1em;
+	padding-left: 1em;
+}
+
+.inside .a42-narrow {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+/**
+ * -------------------------
+ * HEADER
+ * -------------------------
+ */
+
+.a42-header {
+	margin-bottom: 1em;
+	background-color: #0B1B34;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	color: #fff;
+}
+
+.a42-header *,
+.a42-header a {
+	color: inherit;
+}
+
+.a42-header ::-moz-selection {
+	color: #0B1B34;
+	background-color: #fff;
+}
+
+.a42-header ::selection {
+	color: #0B1B34;
+	background-color: #fff;
+}
+
+.a42-header_in {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+}
+
+.a42-main-title {
+	margin: 0;
+	text-transform: none;
+	font-family: 'GeoBook';
+	margin-left: auto;
+	text-align: right;
+}
+
+.a42-main-title strong {
+	display: block;
+	font-size: 1.5em;
+	line-height: 1;
+	font-family: 'GeoBold';
+}
+
+.a42-limit {
+	max-width: 70ch;
+}
+
+.a42-contrib p,
+.a42-contrib li {
+	font-size: 1.250em; /* 20px */
+}
+
+.a42-contrib li{
+	font-size:1em;
+}
+
+.a42-contrib .a42-minor {
+	font-size: 1em;
+}
+
+.a42-intro {
+	font-size: 1.5em; /* 24px */
+}
+
+.a42-contrib .a42-intro {
+	font-size: 1.200em; /* 24px */
+}
+
+.a42-main a {
+	text-decoration: none;
+	border-bottom: 1px solid currentColor;
+}
+
+.a42-main a:focus,
+.a42-main a:hover,
+.a42-main a:active {
+	border-color: #CEDAE6;
+}
+
+.a42-title-alpha {
+	font-size: 2.813em;
+}
+
+.a42-ml-form-options h2 {
+	font-size: 2.000em; /* 40px*/
+}
+
+.a42-block {
+	padding-top: 4em;
+	padding-bottom: 4em;
+}
+
+.a42-header {
+	background-image: url('img/stars.svg');
+	background-size: 115.25em 8.125em;
+}
+
+.a42-main-title {
+	position: relative;
+	top: .3em;
+	font-size: 1.875em;
+}
+
+h1 {
+	font-size: 2.8125em; /* 45px */
+}
+
+h2 {
+	font-size: 2.5em; /* 40px */
+}
+
+h3 {
+	font-size: 2.1875em; /* 35px */
+}
+
+h4 {
+	font-size: 1.875em; /* 30px */
+}
+
+h5 {
+	font-size: 1.563em; /* 25px */
+}
+
+h6 {
+	font-size: 1.375em; /* 22px */
+}
+
+
+/**navigation**/
+
+nav ul{
+	display: flex;
+	padding:0;
+	text-align:center;
+}
+nav li:before{
+	content:none;
+}
+nav ul li a{
+	display:block;
+	padding:10px;
+	margin-right:5px;
+	text-decoration:none;
+	color:#fff;
+	font-weight:bold;
+	background:#962E3F;
+}

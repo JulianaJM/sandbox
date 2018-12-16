@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<form>
+	 <select>
+	  <optgroup label="Véhicules">
+	    <option>Voiture</option>
+	    <option>Motos</option>
+	  </optgroup>
+	  <optgroup label="Maison">
+	    <option>Grande</option>
+	    <option>Petite</option>
+	  </optgroup>
+	</select> 
+
+		<fieldset>
+			<legend>ALLER</legend>
+			<label for="depart">Départ</label>
+			<input type="text" id="depart" required/>
+			<label for="arrive">Arrivée</label>
+			<input type="text" id="arrive"/>
+		</fieldset>
+
+		<div role="group" aria-labelledby="retour">
+			<p id="retour">RETOUR</p>
+			<label for="depart2">Départ</label>
+			<input type="text" id="depart2"/>
+			<label for="arrive2">Arrivée</label>
+			<input type="text" id="arrive2"/>
+		</div>
+
+
+	<p>
+		<p id="toto" tabindex="-1">Le nom de votre mère</p>
+		<p id="titi" tabindex="-1">et son nom de jeune fille</p>
+		<label for="usernom">Nom</label>
+		<input type="text" id="usernom" placeholder="gggggg" aria-labelledby="toto titi"/>
+	</p>
+
+	<p>
+		<input type="text" id="search" title="inscrire un mot clé" />
+	</p>
+
+	<p>
+		<span id="adresse">Adresse mail</span>
+		<input type="text" aria-labelledby="adresse" aria-describedby="aidemail"/>
+		<span id="aidemail">audrey@oui.scnf</span>
+	</p>
+	<p>
+		<span id="datenaissance">date</span>
+		<input type="text" aria-labelledby="datenaissance" aria-describedby="aidedate"/>
+		<span id="aidedate">jj/mm/aaaa</span>
+	</p>
+
+	<p>
+		<span>Code postal</span>
+		<input type="text" aria-label="Code postal de votre ville"/>
+	</p>
+
+	<p style="display:none" id="yoyo">je suis un texte caché</p>
+	<input type="submit" value="Envoyer" aria-describedby="yoyo" title="Envoyer les informations"/>
+
+</form>
+
+</body>
+
+</html>

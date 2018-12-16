@@ -1,0 +1,631 @@
+*{
+	box-sizing:border-box;
+	line-height:1.33em;
+}
+/* 
+Le focus est augmenté afin d'en améliorer la visibilité.
+On utilise la propriété outline et non pas la propriété border par exemple, ceci afin de ne pas rentrer en conflit avec d'éventuels dispositifs ou plugins déjà proposés. De plus, l'outline ne rentre pas en compte dans le calcul de la largeur de boîte (box model).
+*/
+*:focus{
+	outline:2px solid red;
+}
+/*
+Pour masquer un contenu, tout en le laissant à disposition des lecteurs d'écran, il suffit de le de positionner en dehors de la zone d'affichage.
+Ce dispositif est utilisé pour le summary du tableau de données ou pour une partie du texte de la légende de l'image.
+*/
+.sr{
+	position:absolute;
+	top:-100000px;
+}
+/*
+display:none, comme visibility:hidden, empêchent la vocalisation des contenus masqués.
+Ce dispositif est utilisé pour le formulaire et les messages d'erreur qui ne doivent être rendu actif que suite à une action de l'utilisateur.
+Ce dispositif peut être accompagné, si nécessaire de la propriété aria-hidden qui signale aux lecteurs d'écrans que le contenu ne doit pas être restitué.
+*/
+.is-hidden{
+	display:none;
+}
+
+p, li{
+	font-size:1em;
+}
+
+body{
+	font-family:"sans-serif";
+	margin:0;
+	position:relative;
+	z-index:2;
+	font-size:1em;
+	overflow-x:hidden;
+}
+
+/** General **/
+
+.clear:after{
+	content:'';
+	display:block;
+	width:100%;
+	clear:both;
+}
+
+.inside{
+	width:1040px;
+	max-width:100%;
+	margin:auto;
+	position:relative;
+}
+
+button{
+	cursor:pointer;
+}
+
+/** skiplink 
+Par défaut, les liens d'accès rapide sont masqués : on les positionne en dehors de l'écran, et on ne les faits apparaitre qu'à la prise de focus.
+La solution idéale restant de les traiter en contenu visible permanent, puisqu'ils peuvent être utiles à des utilisateurs voyants, naviguant à la souris (utilisateurs de loupes d'écrans par exemple). Néanmoins, s'il existe une contrainte il est important, pour les masquer, d'employer cette méthode. En effet les utilisateurs de lecteurs d'écran utilise rarement la tabulation lui préférant les flèches de direction qui déplacent un curseur virtuel.
+Dans le cas où les liens d'accès rapide sont masqués avec display:none ou visiblity:hidden ils resteront masqués aux utilsateurs de lecteurs d'écran.
+Bien que les liens d'accès rapide soient préférentiellement utilisés par les utilisateurs de la navigation au clavier il est important de les rendre disponibles pour tout le monde.
+**/
+#skiplink{
+	position:absolute;
+	left : -10000px;
+	color:#fff;
+}
+
+#skiplink:focus{
+	display:block;
+	left : 8.2em;
+}
+
+
+/** header**/
+
+#header{
+	background:#43454A;
+	color:#fff;
+	padding:3em 0 2em 0;
+}
+
+h1{
+	padding:0;
+	margin:0;
+	font-weight:normal;
+	text-transform:uppercase;
+	font-size:3.5em;
+}
+/* Linéarisation - Adaptation du contenu à la taille de la police (Zoom texte)
+Dans ce cas-ci, le site est traité en mobile first :  par défaut, on laisse l'état de positionnement natif des blocs de contenu, ils sont donc présentés les uns en dessous des autres.
+Pour adapter la présentation aux écrans desktop (large), une media queries est utilisée avec une largeur plancher de 60 em (qui correspond à la largeur d'affichage d'un écran de pc desktop). Dans cette configuration, les blocs de contenus sont positionnés en colonne via de simples flottants.
+L'effet de linéarisation recherché, c'est à dire revenir à la position initiale des blocs, est obtenu en jouant sur le fait que l'augmentation des tailles de caractères fait croitre l'unité em. Plus les caractères sont augmentés moins la largeur disponible pour leur affichage est grande. Par exemple avec un pas d'agrandissement de 10%, la largeur d'affichage n'est plus que de 54em. La limite plancher pour afficher les blocs (60 em) n'est donc plus atteinte, les blocs se linéarisent, ce qui permet à l'utilisateur d'agrandir les tailles de caractères sans provoquer de recouvrement de contenu.
+D'autre techniques existent, par exemple utiliser des flottants par défaut dans un espace d'affichage à dimensions fixe (% ou px) dans ce cas c'est la propriété naturelle des flottants de se linéariser quand ils rentrent en collision qui est exploitée.
+Enfin le raisonnement inverse est également possible : en partant d'un design pour desktop il est possible d'organiser des points de rupture et de provoquer les effets de linéarisation via des repositionnements.
+Ces techniques ne sont pas exclusives l'une de l'autre et peuvent très bien être utilisées ensembles.
+
+Pour une explication détaillée et abordable de la mise en page avec des points de rupture en em, consultez l'article de Marie Guillaumet : http://marieguillaumet.com/refonte-mon-portfolio-du-responsive-en-em-premiere-partie/
+
+*/
+@media screen and (min-width:70em){
+	.chapo{
+		width:750px;
+		float:right;
+	}
+	.intro{
+		width:50%;
+	}
+}
+
+.intro{
+	font-size:1.2em;
+	font-variant:small-caps;
+	/*line-height:1.5em;*/
+	margin:0;
+}
+
+/** nav **/
+#navigation{
+	margin-top:1em;
+}
+#navigation ul{
+	padding:0;
+	margin:0;
+}
+
+@media screen and (min-width:65em){
+	#navigation{
+		min-width:27.88%;
+		float:left;
+		margin:0;
+	}
+}
+
+#navigation li{
+	list-style:none;
+}
+
+#navigation li a{
+	display:inline-block;
+	min-width:50%;
+	color:#000;
+	background:#D9FFDE;
+	border-radius:5px;
+	text-decoration:none;
+	padding:10px;
+	margin-bottom:10px;
+}
+
+#navigation li a:hover,
+#navigation a:hover,
+#navigation li a:focus,
+#navigation a:focus{
+	background:#9DBFA2
+}
+
+/** Toggle **/
+
+#myToggle {
+	margin:0;
+	font-size:1em;
+}
+
+#myToggle button{
+	border:0;
+	font-size:1.6em;
+	background:transparent;
+	margin:0;
+	padding:0;
+	display:block;
+	width:100%;
+	color:#fff;
+	padding:1em 0;
+	background:#00857C;
+	text-align:center;
+	text-transform:uppercase;
+	font-size:1em;
+}
+
+#myToggle button:hover,
+#myToggle button:focus{
+	background:#333
+}
+
+#myContentToToggle,
+#modal-def-content{
+	display:none
+}
+
+#modal-def-content.is-visible,
+#myContentToToggle.is-visible{
+	display:block;
+}
+
+
+/** Modale **/
+#modal-def{
+	background:none;
+	border:none;
+	color:blue;
+	text-decoration:underline;
+}
+
+#modal-def-content{
+	position:absolute;
+	width:40%;
+	top:45%;
+	left:15%;
+	z-index:600;
+	background:#fff;
+	padding:0.3em;
+	border:1px solid grey;
+	box-shadow:2px 2px 12px #000;
+}
+
+#modal-def-content h1{
+	font-size:1em;
+	border-bottom:double 2px gray;
+	text-transform:initial;
+}
+
+#modal-def-content figure{
+	margin:0 0 20px 0 
+}
+
+#modal-def-content img{
+	float:left;
+	margin-right:5px;
+}
+
+#modal-def-content .legend{
+	padding-top:3em;
+	font-size:0.8em;
+}
+
+#modal-def-content p{
+	font-size:0.75em;
+}
+
+#btn-close-def{
+	position:absolute;
+	top:2px;
+	right:2px;
+	border-radius:40px;
+	width:1.8em;
+	height:1.8em;
+	border:1px solid grey;
+}
+
+#btn-close-def span{
+	font-weight:bold;
+}
+
+#btn-close-def:hover,
+#btn-close-def:focus{
+	background-color:red;
+	color:#fff;
+	outline:none;
+}
+/** Form **/
+#myContentToToggle{
+	padding:2em 0;
+	background:#f2f2f2;
+}
+
+p.required{
+	width:28em;
+	display:none;
+}
+
+p.required span{
+	background:#A10013;
+	color:#fff;
+	font-size:0.8em;
+	border-radius:5px;
+	display:inline-block;
+	padding:5px;
+}
+
+p.label,
+label{
+ font-size:1rem;
+ display:inline-block;
+ margin:1em 0 1em 0;
+}
+
+
+input.required,
+textarea.required{box-shadow:0 0 4px red}
+
+.success{
+	width:80%;
+	margin:1em auto 1em auto;
+	padding:10px;
+	background:green;
+	color:#fff;
+	border-radius:5px;
+}
+
+input:hover,
+label:hover,
+textarea:hover{
+	cursor:pointer;
+}
+
+input[type="text"],
+textarea{
+	margin:0;
+	margin-bottom:15px;
+	padding:10px;
+	display:block;
+	width:70%;
+}
+
+input[type="text"]:nth-child(3n){
+	margin-right:0;
+}
+
+input[type="submit"]{
+	display:block;
+	background:#333;
+	color:#fff;
+	font-weight:bold;
+	padding:10px 20px ;
+	border:0;
+	margin-top:20px;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus{
+	background:#999;
+}
+
+fieldset{
+	border:0
+}
+
+.title-gp{
+	font-weight:bold;
+	border-bottom:1px solid #333;
+}
+
+#search input[type="image"]{
+	background:#AE0076;
+	margin:0;
+	float:left;
+	border-radius:0 5px 5px 0;
+	height:36px;
+	width:36px;
+}
+
+#search input[type="image"]:hover,
+#search input[type="image"]:focus{
+	opacity:0.5
+}
+
+#search input[type="text"]{
+	margin:0;
+	width:50%;
+	float:left;
+	border-radius:5px 0 0 5px;
+	height:35px
+}
+
+/** block content **/
+
+
+#block-1{
+	background:#fcfcfc
+}
+
+#block-3{
+	background:#333;
+	color:#fff
+}
+
+#block-2 .right-title{
+	color:#00857C
+}
+@media screen and (min-width:70em){
+	.left-title{
+		width:250px;
+		float:left;
+		padding-right:0;
+	}
+
+	.right-title{
+		width:300px;
+		float:right;
+
+	}
+
+	.left-content{
+		width:700px;
+		float:left;
+		padding:2em 20px 2em 0;
+		border-right:1px solid #ccc;
+	}
+
+	.right-content{
+		width:750px;
+		float:right;
+		left:250px;
+		padding:2em 0 2em 10px;
+		border-left:1px solid #ccc;
+	}
+}
+
+
+.resume .title{
+	padding-top:33px;
+	font-size:2.5em;
+	font-weight:normal;
+	margin-bottom:0;
+	/*line-height:1.2em;*/
+	margin:0
+}
+
+.resume p{
+	font-size:0.80em;
+	/*line-height:1.5em;*/
+	text-align:justify;
+	margin:0;
+}
+
+.marge-tab{
+	margin-left:5%;
+}
+
+.left-content,
+.right-content{
+	font-size:0.90em;
+	/*line-height:1.7em;*/
+}
+
+/** table **/
+
+table{
+	width:100%;
+	border-collapse:collapse;
+}
+
+caption{
+	text-align:left;
+}
+
+.titre-table{
+	margin-bottom:0
+}
+
+tr{
+	border-top:1px solid #fff;
+}
+
+tr:nth-child(even){
+	border-top:3px solid #fff;
+}
+
+tr:last-child{
+	border-bottom:3px solid #fff;
+}
+
+tr:first-child,
+td:first-child{
+	font-weight:bold;
+}
+
+tr:nth-child(even) td:nth-child(2){
+	font-weight:bold
+}
+
+td{
+	text-align:center;
+}
+
+/** footer **/
+
+#footer{
+	clear:both;
+	background:#666;
+	color:#fff;
+	padding:5em 0 4em 0
+}
+
+#footer p{
+	margin:0;
+}
+
+#footer .links p{
+	font-weight:bold;
+	margin:20px 0;
+	font-size:1.5em;
+}
+
+#footer ul{
+	padding:0;
+	margin:0
+}
+
+#footer li{
+	list-style:none;
+	float:left;
+	display:block
+}
+
+@media screen and (min-width:70em){
+	#footer .links{
+		display:inline-block;
+		vertical-align:bottom;
+		width:65%;
+	}
+}
+
+
+/**
+Attention aux width et height
+Les propriétés width, height, max-width et max-height peuvent causer désastres en cas d'agrandissement des caractères, surtout s'ils sont déclarés en px Ici l'exemple n'a été pris que pour des liens, mais il est courant de trouver des blocs, qui pour des raisons esthétiques, ont une hauteur fixée en px (pour conserver un alignement par exemple). Une hauteur, couplée à un overflow:hidden, et c'est la perte de contenu assurée pour qui navigue avec les caractères agrandis. 
+
+La propriété max-width et max-height sont donc à utiliser de façon très discrète voire jamais.
+Pour les propriétés width et height, préférez toujours utiliser des unités en em.
+
+Veillez donc à toujours tester l'agrandissement des caractères dans ces cas. Et retenez que tout ce que vous pouvez déclarer en px vous pour le faire en em. Dans ces cas, les problèmes disparaissent !
+**/
+#footer .links a{
+/*	max-width:250px;*/
+	height:2em;
+	display:inline-block;
+	background:#AE0076;
+	color:#fff;
+	padding:5px;
+	text-decoration:none;
+	border-radius:4px;
+	font-size:0.80em;
+	margin-right:5px;
+	overflow:hidden;
+}
+
+#footer .links a:hover,
+#footer .links a:focus{
+	background:#ddd;
+	color:#333;
+}
+
+@media screen and (min-width:70em){
+	footer {
+		display:inline-block;
+		vertical-align:bottom;
+		text-align:right;
+		width:35%;
+		margin-left:-5px;
+	}
+}
+
+.credits a{
+	color:#fff;
+	font-style:italic;
+	font-size:0.8em;
+}
+
+/** config **/
+
+#modal-window-c{
+	max-width:100%;
+	left:0;
+	margin-left:0
+}
+
+#modal-button-c{
+	position:absolute;
+	border:0;
+	background:#fff;
+	color:#333;
+	border-radius:0 0 5px 0;
+}
+
+/**panier**/
+
+#basket{
+	background-color: #ddd;
+	position:fixed;
+	top:0;
+	right:0;
+	width:200px;
+	padding:1em 1em;
+}
+
+
+#basket h1{
+	font-size:1rem;
+	font-weight:bold;
+	text-transform:initial;
+}
+
+#basket h1:before{
+	content:"";
+	display:inline-block;
+	background:url('../img/basket.png') no-repeat center bottom;
+	background-cover:cover;
+	width:50px;
+	height:42px;
+}
+@media screen and (max-width:70em){
+	#basket{
+		background-color: #ddd;
+		position:fixed;
+		top:auto;
+		bottom:0;
+		left:0;
+		width:100%;
+		padding:0.5em 1em;
+	}
+	#basket *{
+		display:inline-block;
+		margin:0;
+		margin-right:5px;
+		padding:0;}
+}
+
+/**fichiers d'upload**/
+.delete-upload{
+	background:#8b2323;
+	border:0;
+	padding:5px;
+	margin-left:10px;
+	border-radius:3px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Accueil - ARIA au pays du Web</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
+</head>
+
+<body>
+<div id="screen">
+	<p class="skiplink"><a href="#main">contenu</a></p>
+	<header role="banner" class="main-header">
+		<h1 id="banner">ARIA au pays du Web</h1>
+		<img src="img/access42.svg" alt="Access42" width="60" />
+	</header>
+	
+	<nav id="menu" role="navigation" class="clearfix">
+		<ul id="nav">
+		 <li><a href="index.html" class="active"  title="Accueil - page active"><span class="coche"></span>Accueil</a></li>
+		 <li><a href="landmark.html"><span class="coche"></span>Landmark</a></li>
+		 <li><a href="alerte.html" title="Boite de dialogue alerte"><span class="coche"></span>Alerte</a></li>
+		 <li><a href="slider.html"  ><span class="coche"></span><span lang="en">Slider</span></a></li>
+		 <li><a href="progressbar.html"  ><span class="coche"></span>Barre de progression</a></li>
+		 <li><a href="formulaire.html"  title="un formulaire intelligent"><span class="coche"></span>Formulaire</a></li>
+		 <li><a href="live_region.html"  title="Live region&nbsp;: une région vivante polie"><span class="coche"></span><span lang="en">Live region</span></a></li>
+		 <li><a href="chat.html"  title="Un module de chat intelligent"><span class="coche"></span>Chat</a></li>
+		</ul>
+	</nav>
+
+<main id="main" role="main" class="main">
+
+	<section>
+		<h2>Présentation</h2>
+	
+		<p>Ces pages contiennent les démonstrations effectuées lors de l'atelier « Aria au pays du web », le 16 avril 2011, lors du W3Café Accessibilité.</p>
+		<p>Les démonstrations présentées ici sont volontairement très simplifiées, le but étant d'illustrer certains concepts de base d'ARIA.</p>
+	
+		<p>Attention !</p>
+		<ul>
+		 <li>Il s'agit d'une simple démonstration. Le support sur d'autres navigateurs et d'autres lecteurs d'écran n'est pas garanti. Néanmoins, les mêmes démonstrations ont fonctionné avec <span lang="en">Jaws 11</span> dans la même configuration.</li>
+		 <li>Seules les fonctionnalités de base ont été utilisées avec <abbr title="Non Visual Desktop Application">NVDA</abbr> dans sa configuration par défaut.</li>
+		 <li>ARIA est encore en phase d'expérimentation et il est possible que certaines démonstrations fonctionnent mal selon votre configuration.</li>
+		</ul>
+	</section>	
+	<section>
+		<h2>Source des démos</h2>
+		<p>
+		 Les démonstrations sont issues de&nbsp;:
+		</p>
+		<ul id="source">
+		<li><span class="demoT"><span lang="en">Landmark</span>&nbsp;: <sup>(*)</sup></span> <a href="http://www.alsacreations.com/">Alsacréations</a> - Philippe Vayssière</li>
+		<li><span class="demoT">Alerte&nbsp;:</span> Qelios - Jean-Pierre Villain</li>
+		<li><span class="demoT"><span lang="en">Slider&nbsp;: </span></span> <a href="http://hanshillen.github.io/jqtest/#goto_slider"><span lang="en">Accessible jQuery-ui Components Demonstration</span></a> - <span lang="en">Hans Hillen</span></li>
+		<li><span class="demoT">Barre de progression&nbsp;: </span> <a href="http://hanshillen.github.io/jqtest/#goto_slider"><span lang="en">Accessible jQuery-ui Components Demonstration</span></a> - <span lang="en">Hans Hillen</span></li>
+		<li><span class="demoT">Formulaire&nbsp;: </span> Qelios - Jean-Pierre Villain</li>
+		<li><span class="demoT"><span lang="en">Live region</span>&nbsp;: </span> Qelios - Jean-Pierre Villain</li>
+		<li><span class="demoT">Chat&nbsp;:  <sup>(*)</sup> </span> <a href="http://ideance.net/publications/live-regions/">ARIA - <span lang="en">Live region attributes</span> - Sébastien Delorme</a></li>
+		</ul>
+		<p>
+		 <sup>(*)</sup>&nbsp;: Présentées lors du <a href="http://www.accessiweb.org/index.php/seminaire-decembre-2010.html"> 13<sup>e</sup> séminaire technique AccessiWeb</a> du mois de décembre 2010.
+		</p>
+	</section>
+	
+</main>
+
+	<footer id="footer" role="contentinfo">
+		<p><img src="img/access42.svg" alt="Access42" width="120" /></p>
+	</footer>
+
+</div>
+</body>
+</html>

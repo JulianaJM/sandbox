@@ -1,0 +1,110 @@
+#a42-cookie-settings{
+	position:fixed;
+	bottom:0;
+	left:0;
+	background-color:#343643;
+	color: #fff;
+	z-index:99999;
+	width:100%;
+	margin:0;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+	padding: .5rem 1rem;
+	text-align: center;
+}
+
+#a42-cookie-settings *{
+	margin: 0;
+}
+
+#a42-cookie-message{
+	width:auto;
+	max-width:none;
+}
+
+#a42-cookie-message > *{
+	display: inline-block;
+	vertical-align: top;
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+}
+
+#a42-cookie-message > * + *{}
+
+@media screen and (max-width: 1024px) {
+	#a42-cookie-message > *{
+		display: block;
+	}
+	
+	#a42-cookie-message > * + *{
+		margin-top: .5rem;
+	}
+}
+
+[id="a42-cookie-settings"] button,
+[id="a42-cookie-settings"] a{
+	color: inherit;
+	text-decoration: underline;
+	border: 0;
+}
+
+[id="a42-cookie-settings"] button{
+	font: inherit;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	overflow: visible;
+	-webkit-appearance: button;
+  	cursor: pointer;
+	text-transform: none;
+	padding: 0;
+	background: none;
+	color: inherit;
+	font-family: inherit;
+}
+
+[id="a42-cookie-settings"] button:focus,
+[id="a42-cookie-settings"] button:hover,
+[id="a42-cookie-settings"] button:active{
+	text-decoration: none;
+}
+
+#a42-toggle-cookie-content{
+	display:none;
+	border-top: 2px solid #7d829a;
+}
+
+#a42-toggle-cookie-content.is-visible{display:block;}
+
+#a42-cookie-settings iframe{
+	width: 100%;
+	display: block;
+	border: 0;
+	margin: 0;
+}
+
+#a42-dismiss-cookie-button{
+	background-color: #f2ebc7;
+	color: #0b1b34;
+	text-decoration: none;
+	margin-right: .5rem;
+	margin-left: .5rem;
+	padding-right: .5rem;
+	padding-left: .5rem;
+}
+
+	@media screen and (max-width: 1024px) {
+		#a42-dismiss-cookie-button
+		{
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+
+#a42-dismiss-cookie-button:focus,
+#a42-dismiss-cookie-button:hover,
+#a42-dismiss-cookie-button:active{
+	background-color: #7d829a;
+	color: #fff;
+}
