@@ -1,0 +1,200 @@
+openapi: 3.0.0
+info:
+  description: MA-Frontend Demo API
+  title: MA-Frontend Demo
+  version: '1.0.0'
+
+paths:
+  /realtors:
+    get:
+      description: List realtors
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              $ref: '#/components/schemas/Realtors'
+
+  /realtors/{id}:
+    get:
+      description: Get realtor détails
+      parameters:
+        - name: id
+          in: path
+          description: Realtor's id
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              $ref: '#/components/schemas/Realtor'
+
+        '404':
+          description: Unknown realtor
+          content:
+            text/plain:
+              $ref: '#/components/schemas/Error'
+
+  /realtors/{id}/messages:
+    get:
+      description: Get realtor messages
+      parameters:
+        - name: id
+          in: path
+          description: Realtor's id
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              $ref: '#/components/schemas/Messages'
+
+        '404':
+          description: Unknown realtor
+          content:
+            text/plain:
+              $ref: '#/components/schemas/Error'
+
+  /realtors/{id}/messages/{messageId}:
+    parameters:
+      - name: id
+        in: path
+        description: Realtor's id
+        required: true
+        schema:
+          type: integer
+      - name: messageId
+        in: path
+        description: Message's id
+        required: true
+        schema:
+          type: integer
+
+    get:
+      description: Get realtor messages
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              $ref: '#/components/schemas/Message'
+
+        '404':
+          description: Unknown message for realtor
+          content:
+            text/plain:
+              $ref: '#/components/schemas/Error'
+
+    patch:
+      description: Update realtor messages read status
+
+      requestBody:
+        description: Read status
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                read:
+                  type: boolean
+                  description: Read status
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              $ref: '#/components/schemas/Message'
+
+        '400':
+          description: Invalid payload
+          content:
+            text/plain:
+              $ref: '#/components/schemas/Error'
+
+        '404':
+          description: Unknown message for realtor
+          content:
+            text/plain:
+              $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Message's identifier
+        date:
+          type: string
+          description: Message's date in ISO format
+        type:
+          type: string
+          description: Message's type
+          enum: [phone, email, sms]
+        contact:
+          type: object
+          description: Message's contact
+          properties:
+            firstname:
+              type: string
+              description: Contact's firstname
+            lastname:
+              type: string
+              description: Contact's lastname
+            phone:
+              type: string
+              description: Contact's phone
+            email:
+              type: string
+              description: Contact's email
+        subject:
+          type: string
+          description: Message's subject
+        body:
+          type: string
+          description: Message's body
+        read:
+          type: boolean
+          description: Read status of message
+
+    Messages:
+      type: array
+      items:
+        $ref: '#/components/schemas/Message'
+
+    Realtor:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Realtor's identifier
+        name:
+          type: string
+          description: Realtor's name
+        unread_messages:
+          type: integer
+          description: Realtor's unread messages count
+        logo:
+          type: string
+          description: Realtor's logo URL
+
+    Realtors:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Realtor'
+
+    Error:
+      type: string
