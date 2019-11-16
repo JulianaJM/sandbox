@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^3.3.*",
+    "bootstrap": "^3.4.*",
     "classnames": "^2.2.*",
     "lodash": "^4.17.13",
     "prop-types": "^15.6.*",
